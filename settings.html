@@ -264,218 +264,29 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
-					    <label for="fields-to-display" data-i18n="fields.label">
-					    	{{'fields.label' | translate}}
+					    <label for="columns-to-display" data-i18n="columns.label">
+					    	{{'columns.label' | translate}}
 					    </label>
 					    <button type="button"
 							class="btn btn-link btn-help"
 							data-toggle="popover" data-placement="right"
-							data-i18n="[data-content]fields.tooltip">
+							data-i18n="[data-content]columns.tooltip">
 							<span class="glyphicons circle_question_mark"></span>
 						</button>
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3" ng-repeat="column in settings.additionalParams.columns">
 								<div class="checkbox">
-									<label for="fields-instrument" data-i18n="fields.instrument">{{'fields.instrument' | translate}}</label>
-									<input id="fields-instrument" ng-model="settings.additionalParams.fields.instrument" name="fields-instrument" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-instrument-logo" data-i18n="fields.instrument-logo">{{'fields.instrument-logo' | translate}}</label>
-									<input id="fields-instrument-logo" ng-model="settings.additionalParams.fields.instrumentLogo" name="fields-instrument-logo" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-instrument-name" data-i18n="fields.instrument-name">{{'fields.instrument-name' | translate}}</label>
-									<input id="fields-instrument-name" ng-model="settings.additionalParams.fields.instrumentName" name="fields-instrument-name" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-last-price" data-i18n="fields.last-price">{{'fields.last-price' | translate}}</label>
-									<input id="fields-last-price" ng-model="settings.additionalParams.fields.lastPrice" name="fields-last-price" type="checkbox" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-previous-close" data-i18n="fields.previous-close">{{'fields.previous-close' | translate}}</label>
-									<input id="fields-previous-close" ng-model="settings.additionalParams.fields.previousClose" name="fields-previous-close" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-change" data-i18n="fields.change">{{'fields.change' | translate}}</label>
-									<input id="fields-change" ng-model="settings.additionalParams.fields.change" name="fields-change" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-percent-change" data-i18n="fields.percent-change">{{'fields.percent-change' | translate}}</label>
-									<input id="fields-percent-change" ng-model="settings.additionalParams.fields.percentChange" name="fields-percent-change" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-accumulated-volume" data-i18n="fields.accumulated-volume">{{'fields.accumulated-volume' | translate}}</label>
-									<input id="fields-accumulated-volume" ng-model="settings.additionalParams.fields.accumulatedVolume" name="fields-accumulated-volume" type="checkbox" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-day-high" data-i18n="fields.day-high">{{'fields.day-high' | translate}}</label>
-									<input id="fields-day-high" ng-model="settings.additionalParams.fields.dayHigh" name="fields-day-high" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-day-low" data-i18n="fields.day-low">{{'fields.day-low' | translate}}</label>
-									<input id="fields-day-low" ng-model="settings.additionalParams.fields.dayLow" name="fields-day-low" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-52-week-high" data-i18n="fields.52-week-high">{{'fields.52-week-high' | translate}}</label>
-									<input id="fields-52-week-high" ng-model="settings.additionalParams.fields.52WeekHigh" name="fields-52-week-high" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-52-week-low" data-i18n="fields.52-week-low">{{'fields.52-week-low' | translate}}</label>
-									<input id="fields-52-week-low" ng-model="settings.additionalParams.fields.52WeekLow" name="fields-52-week-low" type="checkbox" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-bid" data-i18n="fields.bid">{{'fields.bid' | translate}}</label>
-									<input id="fields-bid" ng-model="settings.additionalParams.fields.bid" name="fields-bid" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-ask" data-i18n="fields.ask">{{'fields.ask' | translate}}</label>
-									<input id="fields-ask" ng-model="settings.additionalParams.fields.ask" name="fields-ask" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-yield" data-i18n="fields.yield">{{'fields.yield' | translate}}</label>
-									<input id="fields-yield" ng-model="settings.additionalParams.fields.yield" name="fields-yield" type="checkbox" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-yield-change" data-i18n="fields.yield-change">{{'fields.yield-change' | translate}}</label>
-									<input id="fields-yield-change" ng-model="settings.additionalParams.fields.yieldChange" name="fields-yield-change" type="checkbox" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="checkbox">
-									<label for="fields-trade-time" data-i18n="fields.trade-time">{{'fields.trade-time' | translate}}</label>
-									<input id="fields-trade-time" ng-model="settings.additionalParams.fields.tradeTime" name="fields-trade-time" type="checkbox" />
+									<label for="columns-{{column.name}}" data-i18n="column.{{column.name}}">{{'columns.' + column.name | translate}}</label>
+									<input id="columns-{{column.name}}" ng-model="column.show" name="columns-{{column.name}}" type="checkbox" />
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" ng-repeat="column in settings.additionalParams.columns | filter:{show:true}">
 				<div class="col-md-12">
-					<div class="panel panel-default">
-					  <div class="panel-heading">{{'fields.trade-time' | translate}}</div>
-					  <div class="panel-body">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-								    <label for="field-alignment" data-i18n="field.alignment.label">
-								    	{{'field.alignment.label' | translate}}
-								    </label>
-								    <select id="field-alignment" name="field-alignment" ng-model="field.alignment" class="form-control">
-											<option value="left" data-i18n="field.alignment.left">{{'field.alignment.left' | translate}}</option>
-											<option value="center" data-i18n="field.alignment.center">{{'field.alignment.center' | translate}}</option>
-											<option value="right" data-i18n="field.alignment.right">{{'field.alignment.right' | translate}}</option>
-								    </select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<label for="field-width" data-i18n="field.width">
-								    	{{'field.width' | translate}}
-								    </label>
-								    <input id="field-width" name="field-width" type="text" class="text-field form-control" value="25" />
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-								    <label for="field-decimals" data-i18n="field.decimals.label">
-								    	{{'field.decimals.label' | translate}}
-								    </label>
-								    <select id="field-decimals" name="field-decimals" ng-model="field.decimals" class="form-control">
-											<option value="0">0</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-								    </select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-								    <label for="field-sign" data-i18n="field.sign.label">
-								    	{{'field.sign.label' | translate}}
-								    </label>
-								    <select id="field-sign" name="field-sign" ng-model="field.sign" class="form-control">
-											<option value="neg">-</option>
-											<option value="pos-neg">+/-</option>
-											<option value="bracket">()</option>
-											<option value="arrow">Arrow</option>
-								    </select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-								    <label for="field-color-condition" data-i18n="field.color-condition.label">
-								    	{{'field.color-condition.label' | translate}}
-								    </label>
-								    <select id="field-color-condition" name="field-color-condition" ng-model="field.colorCondition" class="form-control">
-									    <option value="none" data-i18n="field.color-condition.none">{{'field.color-condition.none' | translate}}</option>
-											<option value="up-green" data-i18n="field.color-condition.up-green">{{'field.color-condition.up-green' | translate}}</option>
-											<option value="up-red" data-i18n="field.color-condition.up-red">{{'field.color-condition.up-red' | translate}}</option>
-											<option value="positive-green" data-i18n="field.color-condition.positive-green">{{'field.color-condition.positive-green' | translate}}</option>
-											<option value="positive-red" data-i18n="field.color-condition.positive-red">{{'field.color-condition.positive-red' | translate}}</option>
-								    </select>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<label for="field-header-text" data-i18n="field.header-text">
-									    	{{'field.header-text' | translate}}
-								    </label>
-								    <input id="field-header-text" name="field-header-text" type="text" class="text-field form-control" />
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<column-setting column="column"></column-setting>
 				</div>
 			</div>
 			<!--
@@ -533,6 +344,7 @@
 	<script src="js/components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
 	<script src="js/settings/ctr-financial-table-settings.js"></script>
 	<script src="js/settings/dtv-font-picker.js"></script>
+	<script src="js/settings/dtv-column-setting.js"></script>
 
     <script type="text/javascript" src="FinancialTable.min.js"></script>
 
