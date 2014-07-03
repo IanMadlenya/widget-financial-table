@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Financial Table</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<style type="text/css">
+	    * {
+		/* Important: This is necessary to minimize column misalignment between the headings and the data. */
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	    }
+            body {
+		background-color: transparent;
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none; 
+	    }
+	    table {
+		border-collapse: collapse;
+	    }
+	    tbody tr {
+		white-space: nowrap;
+	    }
+	    
+	    #container {				
+		width: 100%;
+		height: 95%;
+	    }
+	    #container.fullScreen {
+		height: 100%;
+	    }
+	    
+	    .error {
+		padding: 1em;
+		font-size: 20px;
+		color: red;
+	    }	    	   
+	    
+	    /* Row Colors */
+	    .even {
+		background-color: __UP_rowColor__;
+	    }
+	    .odd {
+		background-color: __UP_altRowColor__;
+	    }
+	    .selected {
+		background-color: __UP_selRowColor__;
+	    }
+
+	    /* Conditions */
+	    #financial.default .changeUpIncrease,
+	    #financial.default .changeDownDecrease,
+	    #financial.default .valuePositivePositive,
+	    #financial.default .valueNegativeNegative {
+		color: green !important;
+	    }
+	    #financial.default .changeUpDecrease,
+	    #financial.default .changeDownIncrease,
+	    #financial.default .valuePositiveNegative,
+	    #financial.default .valueNegativePositive {
+		color: red !important;
+	    }
+	    
+	    /* Logos and arrows */	    
+	    #financial.default .logo img, .arrow {
+		vertical-align: top;
+	    }
+	    
+	    /* Disclaimer */
+	    #disclaimer.default {
+		padding: 0.5em;
+		font-style: italic;
+		font-size: 10px;
+	    }
+	    #disclaimer.default.top {
+		position: relative;	/* To have rows scroll underneath the disclaimer. */		
+	    }
+	    #disclaimer.default.top.right {
+		text-align: right;	
+	    }
+	    #disclaimer.default.bottom {
+		position: absolute;
+		bottom: 0;
+	    }
+	    #disclaimer.default.bottom.right {
+		right: 0;
+	    }
+	</style> 
+</head>
+    
+<body>
+	<div id="container">
+	</div>
+ 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date.js"></script>
+	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+    
+	<script type="text/javascript" src="https://s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
+	<script type="text/javascript" src="https://s3.amazonaws.com/Common-Production/dataTables/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://s3.amazonaws.com/Common-Production/InfiniteScroll/InfiniteScroll.min.js"></script>
+	<script type="text/javascript" src="https://s3.amazonaws.com/Gadget-Financial-Table/FinancialTable.min.js"></script>
+	
+    <script type="text/javascript"> 
+            var prefs = new gadgets.Prefs(),
+		financial = null;
+		
+	    //Issue 1053 - Disable right-click.
+	    window.oncontextmenu = function() {
+		return false;
+	    };
+		
+	    //Add Analytics code.
+	    var _gaq = _gaq || [];
+	    
+	    _gaq.push(['_setAccount', 'UA-41395348-1']);
+	    _gaq.push(['_trackPageview']);
+	  
+	    (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+	    
+            function init() {
+                var id = prefs.getString("id"),				
+		    bgColor = prefs.getString("bgColor");
+		
+                if (bgColor && bgColor != "") {
+                    document.body.style.background = bgColor;
+                }
+		
+		if (id && id != "") {
+		    gadgets.rpc.register("rscmd_play_" + id, play);
+		    gadgets.rpc.register("rscmd_pause_" + id, pause);
+		    gadgets.rpc.register("rscmd_stop_" + id, stop);
+		    gadgets.rpc.register("rsparam_set_" + id, initFinancial);
+		    gadgets.rpc.call("", "rsparam_get", null, id, "displayId");
+		}
+            }
+	    
+	    function initFinancial(name, value) {
+		var id = prefs.getString("id");
+		
+		if (prefs.getBool("acceptance")) {
+		    financial = new RiseVision.Financial(value);
+		
+		    gadgets.rpc.register("rscmd_getInstrument", function(index) {
+			return financial.getInstrument.call(financial, index);
+		    });
+		
+		    gadgets.rpc.register("rsparam_set_" + id, financial.getAdditionalParams);
+		    gadgets.rpc.call("", "rsparam_get", null, id, "additionalParams");
+		}
+		else {
+		    $("#container").text("You must check the Acceptance setting in order to use this Gadget.");
+		    $("#container").addClass("error");
+		    readyEvent();
+		}
+	    }
+	    
+	    function play() {
+		if (financial != null) {
+		    financial.play();
+		}
+	    }
+	    
+	    function pause() {
+		if (financial != null) {
+		    financial.pause();
+		}
+	    }
+	    
+	    function stop() {
+		if (financial != null) {
+		    financial.pause();
+		}
+	    }
+	    
+            // sends "READY" event to the Viewer
+            function readyEvent() {
+                gadgets.rpc.call('', 'rsevent_ready', null, prefs.getString("id"), true, true, true, true, true);
+            }
+            
+            // sends "DONE" event to the Viewer
+            function doneEvent() {
+                gadgets.rpc.call('', 'rsevent_done', null, prefs.getString("id"));
+            }
+            
+	    gadgets.util.registerOnLoadHandler(init);
+    </script>]]>
+</body>
+</html>
+

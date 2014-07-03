@@ -1,0 +1,12 @@
+{
+  "name": "rv-financial-table-widget",
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-route": "~1.2.18",
+    "angular-translate": "~2.2.0",
+    "angular-translate-loader-static-files": "~2.2.0",
+    "angular-translate-loader-url": "~2.2.0",
+    "underscore": "1.6.0",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core"
+  }
+}

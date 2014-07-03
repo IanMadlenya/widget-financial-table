@@ -1,0 +1,106 @@
+{
+	"settings": "Financial Table Settings",
+	"save": "Save",
+	"cancel": "Cancel",
+	"help": "Help",
+	"instruments": "Instruments",
+	"scroll-direction": {
+		"label": "Scroll Direction",
+		"none": "None",
+		"up": "Up",
+		"down": "Down"
+	},
+	"scroll-by": {
+		"label": "Scroll By",
+		"continuous": "Continuous",
+		"item": "Item",
+		"page": "Page"
+	},
+	"scroll-hold": "Scroll Hold",
+	"scroll-speed": {
+		"label": "Scroll Speed",
+		"slowest": "Slowest",
+		"slow": "Slow",
+		"medium": "Medium",
+		"fast": "Fast",
+		"fastest": "Fastest"
+	},
+	"scroll-resumes": "Scroll Resumes",
+	"row-padding": "Row Padding (pixels)",
+	"col-padding": "Column Padding (pixels)",
+	"col-header-font": {
+		"font": "Column Header Font",
+		"font-url": "Column Header Font URL",
+		"font-size": "Column Header Font Size",
+		"modal-title": "Fonts",
+		"font-variants": "Font Variants",
+		"bold": "Bold",
+		"italic": "Italic",
+		"color": "Column Header Color",
+		"text": "Column Header Sample Text"
+	},
+	"data-font": {
+		"font": "Data Font",
+		"font-url": "Data Font URL",
+		"font-size": "Data Font Size",
+		"modal-title": "Fonts",
+		"font-variants": "Font Variants",
+		"bold": "Bold",
+		"italic": "Italic",
+		"color": "Data Color",
+		"text": "Data Sample Text"
+	},
+	"row-color": "Row Color",
+	"alt-row-color": "Alternate Row Color",
+	"fields": {
+		"label": "Select Field(s) to Display",
+		"instrument": "Instrument",
+		"instrument-logo": "Instrument Logo",
+		"instrument-name": "Instrument Name",
+		"last-price": "Last Price",
+		"previous-close": "Previous Close",
+		"change": "Change",
+		"percent-change": "% Change",
+		"accumulated-volume": "Accumulated Volume",
+		"day-high": "Day High",
+		"day-low": "Day Low",
+		"52-week-high": "52 Week High",
+		"52-week-low": "52 Week Low",
+		"bid": "Bid",
+		"ask": "Ask",
+		"yield": "Yield",
+		"yield-change": "Yield Change",
+		"trade-time": "Trade Time"
+	},
+	"field": {
+		"alignment": {
+			"label": "Alignment",
+			"left": "Left",
+			"center": "Center",
+			"right": "Right"
+		},
+		"width": "Width (pixels)",
+		"decimals": {
+			"label": "Decimals"
+		},
+		"sign": {
+			"label": "Sign",
+			"arrow": "Arrow"
+		},
+		"color-condition": {
+			"label": "Color Condition",
+			"none": "None",
+			"up-green": "Change up green change down red",
+			"up-red": "Change down green change up red",
+			"positive-green": "Positive value green negative red",
+			"positive-red": "Positive value red negative green"
+		},
+		"header-text": "Header Text"
+	},
+	"background-color": "Background Color",
+	"default-layout": "Default Layout",
+	"layout-url": "Layout URL",
+	"terms": "I acknowledge that there is currently no charge for this Widget, but at a date that has yet to be determined, it will cost $2 per Display, per month.  At that time I will have 30 days to decide if I wish to continue using this Widget.",
+	"acknoweldge": ""
+
+}
