@@ -4,28 +4,30 @@
 	"cancel": "Cancel",
 	"help": "Help",
 	"instruments": "Instruments",
-	"scroll-direction": {
-		"label": "Scroll Direction",
-		"none": "None",
-		"up": "Up",
-		"down": "Down"
+	"scroll": {
+		"direction": {
+			"label": "Scroll Direction",
+			"none": "None",
+			"up": "Up",
+			"down": "Down"
+		},
+		"by": {
+			"label": "Scroll By",
+			"continuous": "Continuous",
+			"item": "Item",
+			"page": "Page"
+		},
+		"hold": "Scroll Hold",
+		"speed": {
+			"label": "Scroll Speed",
+			"slowest": "Slowest",
+			"slow": "Slow",
+			"medium": "Medium",
+			"fast": "Fast",
+			"fastest": "Fastest"
+		},
+		"resumes": "Scroll Resumes"
 	},
-	"scroll-by": {
-		"label": "Scroll By",
-		"continuous": "Continuous",
-		"item": "Item",
-		"page": "Page"
-	},
-	"scroll-hold": "Scroll Hold",
-	"scroll-speed": {
-		"label": "Scroll Speed",
-		"slowest": "Slowest",
-		"slow": "Slow",
-		"medium": "Medium",
-		"fast": "Fast",
-		"fastest": "Fastest"
-	},
-	"scroll-resumes": "Scroll Resumes",
 	"row-padding": "Row Padding (pixels)",
 	"col-padding": "Column Padding (pixels)",
 	"col-header-font": {
