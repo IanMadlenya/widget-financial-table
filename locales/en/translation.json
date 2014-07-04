@@ -52,7 +52,7 @@
 	},
 	"row-color": "Row Color",
 	"alt-row-color": "Alternate Row Color",
-	"fields": {
+	"columns": {
 		"label": "Select Field(s) to Display",
 		"instrument": "Instrument",
 		"instrument-logo": "Instrument Logo",
@@ -72,7 +72,7 @@
 		"yield-change": "Yield Change",
 		"trade-time": "Trade Time"
 	},
-	"field": {
+	"column": {
 		"alignment": {
 			"label": "Alignment",
 			"left": "Left",

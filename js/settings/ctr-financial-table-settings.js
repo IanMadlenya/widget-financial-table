@@ -15,5 +15,60 @@ angular.module('risevision.widget.financialTable.settings')
       colPadding:'0'
     },
     additionalParams: {
+      columns: [
+        {
+          name: 'instrument',
+          show: true
+        },
+        {
+          name: 'instrument-logo',
+          show: true
+        },
+        {
+          name: 'instrument-name'
+        },
+        {
+          name: 'last-price'
+        },
+        {
+          name: 'previous-close'
+        },
+        {
+          name: 'change'
+        },
+        {
+          name: 'percent-change'
+        },
+        {
+          name: 'accumulated-volume'
+        },
+        {
+          name: 'day-high'
+        },
+        {
+          name: 'day-low'
+        },
+        {
+          name: '52-week-high'
+        },
+        {
+          name: '52-week-low'
+        },
+        {
+          name: 'bid'
+        },
+        {
+          name: 'ask'
+        },
+        {
+          name: 'yield'
+        },
+        {
+          name: 'yield-change'
+        },
+        {
+          name: 'trade-time'
+        }
+      ]
     }
   });
