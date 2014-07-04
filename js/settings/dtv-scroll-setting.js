@@ -9,10 +9,11 @@ angular.module('risevision.widget.common')
       transclude: false,
       link: function($scope, $element) {
         $scope.defaultSetting = {
-          scrollDirection: 'up',
-          scrollBy: 'continuous',
-          scrollSpeed: 'medium',
-          scrollResumes: '5'
+          enabled: false,
+          //direction: 'up',
+          by: 'continuous',
+          speed: 'medium',
+          resumes: '5'
         };
 
         $scope.defaults = function(obj) {

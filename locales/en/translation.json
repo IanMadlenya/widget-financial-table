@@ -5,6 +5,7 @@
 	"help": "Help",
 	"instruments": "Instruments",
 	"scroll": {
+		"enabled": "Scroll Enabled",
 		"direction": {
 			"label": "Scroll Direction",
 			"none": "None",
@@ -26,7 +27,7 @@
 			"fast": "Fast",
 			"fastest": "Fastest"
 		},
-		"resumes": "Scroll Resumes"
+		"resumes": "Scroll Resumes (seconds)"
 	},
 	"row-padding": "Row Padding (pixels)",
 	"col-padding": "Column Padding (pixels)",
