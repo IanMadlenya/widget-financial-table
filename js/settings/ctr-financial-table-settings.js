@@ -11,6 +11,18 @@ angular.module('risevision.widget.financialTable.settings')
       colPadding:'0'
     },
     additionalParams: {
+      colHeaderFont: {
+        font: 'Verdana',
+        fontSize: '20',
+        isBold: 'false',
+        isItalic: 'false'
+      },
+      dataFont: {
+        font: 'Verdana',
+        fontSize: '20',
+        isBold: 'false',
+        isItalic: 'false'
+      },
       scroll: {
         scrollDirection: 'up'
       },

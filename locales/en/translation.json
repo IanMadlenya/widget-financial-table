@@ -1,4 +1,11 @@
 {
+	"common": {
+		"font-variants": {
+			"label": "Font Variants",
+			"bold": "Bold",
+			"italic": "Italic"
+		}
+	},
 	"settings": "Financial Table Settings",
 	"save": "Save",
 	"cancel": "Cancel",
@@ -37,8 +44,6 @@
 		"font-size": "Column Header Font Size",
 		"modal-title": "Fonts",
 		"font-variants": "Font Variants",
-		"bold": "Bold",
-		"italic": "Italic",
 		"color": "Column Header Color",
 		"text": "Column Header Sample Text"
 	},
@@ -48,8 +53,6 @@
 		"font-size": "Data Font Size",
 		"modal-title": "Fonts",
 		"font-variants": "Font Variants",
-		"bold": "Bold",
-		"italic": "Italic",
 		"color": "Data Color",
 		"text": "Data Sample Text"
 	},
