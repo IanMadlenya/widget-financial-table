@@ -2,7 +2,15 @@ angular.module('risevision.widget.common')
   .directive('fontPicker', ['i18nLoader', '$log', function (i18nLoader, $log) {
     return {
       restrict: 'A',
-      scope: false,
+      scope: {
+        prefix: '=',
+        i18nPrefix: '=',
+        fontData: '=',
+        fontVisible: '=',
+        fontSizeVisible: '=',
+        textVisible: '='
+      },
+      templateUrl: 'js/settings/font-picker.html',
       transclude: false,
       link: function ($scope, elm, attrs) {
         var stripLast = function (str, strToStrip) {
@@ -22,43 +30,43 @@ angular.module('risevision.widget.common')
           }
         };
         var $elm = $(elm);
-        var prefix = attrs.fontPickerPrefix || stripLast(attrs.id, '-font');
+        var prefix = $scope.prefix || stripLast(attrs.id, '-font');
         var picker = $elm.data('font-picker');
-        $elm.fontPicker({
-          'i18n-prefix': attrs.fontPickerI18nPrefix || attrs.id,
-          'defaults' : {
-            'font' : $scope.getAdditionalParam(
-              prefix + '-font', attrs.fontPickerDefaultFont),
-            'font-url' : $scope.getAdditionalParam(
-              prefix + '-font-url', attrs.fontPickerDefaultFontUrl),
-            'font-size' : $scope.getAdditionalParam(
-              prefix + '-font-size', attrs.fontPickerDefaultFontSize),
-            'is-bold' : $scope.getAdditionalParam(
-              prefix + '-bold', attrs.fontPickerDefaultIsBold),
-            'is-italic' : $scope.getAdditionalParam(
-              prefix + '-italic', attrs.fontPickerDefaultIsItalic),
-            'color' : $scope.getAdditionalParam(
-              prefix + '-color', attrs.fontPickerDefaultColor)
-          },
-          'visibility': {
-            'font' : valOrDefault(attrs.fontPickerFontVisible, true),
-            'font-size' : valOrDefault(attrs.fontPickerFontSizeVisible, true),
-            'variants' : valOrDefault(attrs.fontPickerVariantsVisible, true),
-            'text' : valOrDefault(attrs.fontPickerTextVisible, true)
+
+        $scope.$watch('fontData', function(fontData) {
+          if (fontData) {
+            $elm.fontPicker({
+              'i18n-prefix': $scope.i18nPrefix || attrs.id,
+              'defaults' : {
+                'font' : $scope.fontData.font,
+                'font-url' : $scope.fontData.fontUrl,
+                'font-size' : $scope.fontData.fontSize,
+                'is-bold' : $scope.fontData.isBold,
+                'is-italic' : $scope.fontData.isItalic,
+                'color' : $scope.fontData.color
+              },
+              'visibility': {
+                'font' : valOrDefault($scope.fontVisible, true),
+                'font-size' : valOrDefault($scope.fontSizeVisible, true),
+                'variants' : valOrDefault($scope.fontSizeVisible, true),
+                'text' : valOrDefault($scope.textVisible, true)
+              }
+            });
+
+            //load i18n text translations after ensuring i18n has been initialized
+            i18nLoader.get().then(function () {$elm.i18n();});
           }
         });
-        //load i18n text translations after ensuring i18n has been initialized
-        i18nLoader.get().then(function () {$elm.i18n();});
 
-        $scope.$on('collectAdditionalParams', function () {
+        $scope.$parent.$on('collectAdditionalParams', function () {
           $log.debug('Collecting params from', prefix, picker);
-          $scope.setAdditionalParam(prefix + '-font', picker.getFont());
-          $scope.setAdditionalParam(prefix + '-font-style', picker.getFontStyle());
-          $scope.setAdditionalParam(prefix + '-font-url', picker.getfontURL());
-          $scope.setAdditionalParam(prefix + '-font-size', picker.getFontSize());
-          $scope.setAdditionalParam(prefix + '-bold', picker.getBold());
-          $scope.setAdditionalParam(prefix + '-italic', picker.getItalic());
-          $scope.setAdditionalParam(prefix + '-color', picker.getColor());
+          $scope.fontData.font = picker.getFont();
+          //$scope.fontData.fontStyle = picker.getFontStyle();
+          $scope.fontData.fontUrl = picker.getfontURL();
+          $scope.fontData.fontSize = picker.getFontSize();
+          $scope.fontData.isBold = picker.getBold();
+          $scope.fontData.isItalic = picker.getItalic();
+          $scope.fontData.color = picker.getColor();
         });
       }
     };
