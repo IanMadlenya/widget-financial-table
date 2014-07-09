@@ -4,7 +4,8 @@
   "description": "rv-financial-table-widget =================",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
