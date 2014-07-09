@@ -10,7 +10,7 @@ angular.module('risevision.widget.common')
         fontSizeVisible: '=',
         textVisible: '='
       },
-      templateUrl: 'js/settings/font-picker.html',
+      templateUrl: 'font-picker/font-picker.html',
       transclude: false,
       link: function ($scope, elm, attrs) {
         var stripLast = function (str, strToStrip) {

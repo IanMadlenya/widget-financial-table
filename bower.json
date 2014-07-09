@@ -6,7 +6,7 @@
     "angular-translate": "~2.2.0",
     "angular-translate-loader-static-files": "~2.2.0",
     "angular-translate-loader-url": "~2.2.0",
-    "jquery": "1.10.2",
+    "jquery": "1.11.0",
     "underscore": "1.6.0",
     "bootstrap": "git://github.com/Rise-Vision/bootstrap",
     "style-common": "git://github.com/Rise-Vision/style-common",
