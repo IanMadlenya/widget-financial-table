@@ -13,12 +13,12 @@
 
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/glyphicons/glyphicons.min.css">
 
-	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-select/bootstrap-select.min.css">
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-form-helper/bootstrap-formhelpers.min.css">
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-color-picker/bootstrap-colorpicker.min.css" />
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-font-picker/bootstrap-fontpicker.min.css">
-	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/rise/css/rise.min.css">
+	<link rel="stylesheet" href="components/style-common/dist/css/rise.min.css">
 
 </head>
 <body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController">
@@ -179,18 +179,20 @@
 		</form>
 	</div>
 
+<!--
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+-->
   <link rel="stylesheet" href="https://s3.amazonaws.com/Common-Production/Settings/css/Settings.css" />
 
-	<script src="js/components/angular/angular.js"></script>
-	<script src="js/components/angular-translate/angular-translate.js"></script>
-	<script src="js/components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
-	<script src="js/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="components/angular/angular.js"></script>
+	<script src="components/angular-translate/angular-translate.js"></script>
+	<script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="components/jquery/jquery.min.js"></script>
 	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
 	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
 
-	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap/bootstrap.min.js"></script>
+	<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-select/bootstrap-select.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-form-helper/bootstrap-formhelpers.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-color-picker/bootstrap-colorpicker.min.js"></script>
@@ -200,36 +202,30 @@
 	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
 
 	<script src="js/settings-app.js"></script>
-<!--
-	<script src="js/settings/svc-common-settings.js"></script>
-	<script src="js/settings/svc-settings.js"></script>
-	<script src="js/settings/svc-i18n-legacy.js"></script>
-	<script src="js/settings/ctr-settings.js"></script>
-	<script src="js/settings/svc-gadgets-api.js"></script>
--->
-	<script src="js/components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
+
+	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
 	<script src="js/settings/ctr-financial-table-settings.js"></script>
 	<script src="js/settings/dtv-font-picker.js"></script>
-	<script src="js/components/widget-settings-ui-components/dist/js/angular/scroll-setting.js"></script>
-	<script src="js/components/widget-settings-ui-components/dist/js/angular/column-setting.js"></script>
+	<script src="components/widget-settings-ui-components/dist/js/angular/scroll-setting.js"></script>
+	<script src="components/widget-settings-ui-components/dist/js/angular/column-setting.js"></script>
 
-    <script type="text/javascript" src="FinancialTable.min.js"></script>
+  <script type="text/javascript" src="FinancialTable.min.js"></script>
 
-    <script type="text/javascript">
-		var prefs = new gadgets.Prefs(),
-	    financial = null;
+  <script type="text/javascript">
+	var prefs = new gadgets.Prefs(),
+    financial = null;
 
-		$(document).ready(function() {
-		    financial = new RiseVision.FinancialSettings();
+	$(document).ready(function() {
+	    financial = new RiseVision.FinancialSettings();
 
-		    gadgets.rpc.register("rscmd_getSettings", financial.getSettings);
-		    gadgets.rpc.register("rscmd_financialSelectorCallback", financial.setStocks);
-		    gadgets.rpc.register("rscmd_colorPickerCallback", financial.setColor);
-		    gadgets.rpc.register("rscmd_fontSelectorCallback", financial.setFont);
+	    gadgets.rpc.register("rscmd_getSettings", financial.getSettings);
+	    gadgets.rpc.register("rscmd_financialSelectorCallback", financial.setStocks);
+	    gadgets.rpc.register("rscmd_colorPickerCallback", financial.setColor);
+	    gadgets.rpc.register("rscmd_fontSelectorCallback", financial.setFont);
 
-		    financial.initSettings();
-		});
+	    financial.initSettings();
+	});
 
-    </script>
+  </script>
 </body>
 </html>
