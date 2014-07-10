@@ -18,6 +18,9 @@
   var runSequence = require('gulp-run-sequence');
   var path = require('path');
   var rename = require('gulp-rename');
+  var htmlreplace = require("gulp-html-replace");
+  var protractor = require('gulp-protractor').protractor;
+  var webdriver_update = require('gulp-protractor').webdriver_update;
   var httpServer;
 
   var appJSFiles = [
@@ -59,6 +62,15 @@
     .pipe(gulp.dest("dist/"));
   });
 
+  gulp.task("html:e2e", function () {
+    return gulp.src("./src/settings.html")
+      .pipe(htmlreplace({e2egadgets: "../test/gadget-mocks.js" }))
+      .pipe(rename(function (path) {
+        path.basename += "-e2e";
+      }))
+      .pipe(gulp.dest("./src/"));
+  });
+
   gulp.task("css", function () {
     return gulp.src(cssFiles)
       .pipe(minifyCSS({keepBreaks:true}))
@@ -71,7 +83,7 @@
     .pipe(gulp.dest("dist/locales"));
   });
 
-  gulp.task('e2e:server', ['build'], function() {
+  gulp.task('e2e:server', ["config", "html:e2e"], function() {
     httpServer = connect.server({
       root: './',
       port: 8099,
@@ -80,8 +92,8 @@
     return httpServer;
   });
 
-  gulp.task('e2e:test', ['build', 'e2e:server'], function () {
-      var tests = ['test/e2e/test1.js'];
+  gulp.task('test:e2e', ['html:e2e', 'e2e:server'], function () {
+      var tests = ['test/e2e/financial-table-scenarios.js'];
 
       var casperChild = spawn('casperjs', ['test'].concat(tests));
 
@@ -99,11 +111,13 @@
       });
   });
 
-  gulp.task('e2e:test-ng', ['webdriver_update', 'e2e:server'], function () {
-    return gulp.src(['./test/e2e/test-ng.js'])
+  gulp.task('webdriver_update', webdriver_update);
+
+  gulp.task('test:e2e:settings', ['webdriver_update', "html:e2e", 'e2e:server'], function () {
+    return gulp.src(['./test/e2e/financial-table-settings-scenarios.js'])
       .pipe(protractor({
           configFile: './test/protractor.conf.js',
-          args: ['--baseUrl', 'http://127.0.0.1:' + e2ePort + '/test/e2e/test-ng.html']
+          args: ['--baseUrl', 'http://127.0.0.1:8099/src/test-ng.html']
       }))
       .on('error', function (e) { console.log(e); throw e; })
       .on('end', function () {
@@ -115,7 +129,7 @@
       runSequence(['clean', 'config'], ["html", "css", "i18n"], cb);
   });
 
-  gulp.task('test', function(){});
+  gulp.task('test', ['test:e2e:settings']);
 
   gulp.task('default', ['build']);
 
