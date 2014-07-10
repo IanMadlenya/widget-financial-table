@@ -23,6 +23,31 @@
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-color-picker/bootstrap-colorpicker.min.css" />
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/bootstrap-font-picker/bootstrap-fontpicker.min.css">
 
+<!--
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+-->
+	<link rel="stylesheet" href="https://s3.amazonaws.com/Common-Production/Settings/css/Settings.css" />
+
+	<!-- build:js settings/financial-table.min.js -->
+	<script src="components/angular/angular.js"></script>
+	<script src="components/angular-translate/angular-translate.js"></script>
+	<script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="components/jquery/dist/jquery.min.js"></script>
+	<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="settings/settings-app.js"></script>
+	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
+	<script src="settings/ctr-financial-table-settings.js"></script>
+
+	<script src="components/widget-settings-ui-components/dist/js/angular/scroll-setting.js"></script>
+	<script src="components/widget-settings-ui-components/dist/js/angular/column-setting.js"></script>
+	<script src="components/widget-settings-ui-components/dist/js/angular/font-picker.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:e2egadgets -->
+	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+	<!-- endbuild -->
+
 </head>
 <body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController">
 	<div ng-controller="financialTableSettingsController">
@@ -31,7 +56,7 @@
 	<div class="widget-overlay"></div>
 	<div class="widget-wrapper container modal-content" scroll-on-alerts>
 		<div class="modal-header">
-		  <h2 id="settings-title" data-i18n="[prepend]settings"> {{'settings' | translate }}
+		  <h2 id="settings-title"> {{'settings' | translate }}
         <button id="settings-close" type="button" class="close"
                 aria-hidden="true">
           <i class="glyphicons remove_2"></i>
@@ -40,15 +65,15 @@
       <div class="sticky-wrapper">
         <div class="btn-toolbar sticky-buttons">
           <button id="save" class="btn btn-primary" type="button" ng-click="saveSettings();">
-            <span data-i18n="common.buttons.save">{{'save' | translate}}</span>
+            <span>{{'common.buttons.save' | translate}}</span>
             <i class="glyphicons white ok_2 icon-right"></i>
           </button>
           <button id="cancel" class="btn btn-primary" type="button">
-            <span data-i18n="common.buttons.cancel">{{'cancel' | translate}}</span>
+            <span>{{'common.buttons.cancel' | translate}}</span>
             <i class="glyphicons white remove_2 icon-right"></i>
           </button>
           <button id="help" class="btn btn-primary" type="button">
-            <span data-i18n="common.buttons.help">{{'help' | translate}}</span>
+            <span>{{'common.buttons.help' | translate}}</span>
             <i class="glyphicons white circle_question_mark icon-right"></i>
           </button>
         </div>
@@ -59,10 +84,9 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div class="form-group">
-				    <label for="instruments" data-i18n="instruments">
-				    	{{'instruments' | translate}}
-				    </label>
-				    <input id="instruments" name="instruments" type="text" ng-model="settings.params.instruments" class="form-control" required autofocus />
+				    <label for="instruments">{{'instruments' | translate}}</label>
+				    <input id="instruments" type="text"
+						ng-model="settings.params.instruments" class="form-control" required autofocus />
 				    <a id="selector" href="#">Stock Selector</a>
 					</div>
 				</div>
@@ -71,20 +95,18 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-				    <label for="row-padding" data-i18n="row-padding">
-				    	{{'row-padding' | translate}}
-				    </label>
-				    <input id="row-padding" name="row-padding" type="text" ng-model="settings.params.rowPadding" class="text-field form-control" value="0" />
+				    <label for="row-padding">{{'row-padding' | translate}}</label>
+				    <input id="row-padding" type="text"
+						ng-model="settings.params.rowPadding" class="form-control" value="0" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="col-padding" data-i18n="col-padding">
-				    	{{'col-padding' | translate}}
-				    </label>
-				    <input id="col-padding" name="col-padding" type="text" ng-model="settings.params.colPadding" class="text-field form-control" value="0" />
+						<label for="col-padding">{{'col-padding' | translate}}</label>
+				    <input id="col-padding" type="text"
+						ng-model="settings.params.colPadding" class="form-control" value="0" />
 					</div>
 				</div>
 			</div>
@@ -103,50 +125,45 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-				    <label for="row-color" data-i18n="row-color">
-				    	{{'row-color' | translate}}
-				    </label>
-				    <input id="row-color" name="row-color" type="text" ng-model="settings.params.rowColor" class="color-picker form-control" />
+				    <label for="row-color">{{'row-color' | translate}}</label>
+				    <input id="row-color" name="row-color" type="text"
+						ng-model="settings.params.rowColor" class="color-picker form-control" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-				    <label for="alt-row-color" data-i18n="alt-row-color">
-				    	{{'alt-row-color' | translate}}
-				    </label>
-				    <input id="alt-row-color" name="alt-row-color" type="text" ng-model="settings.params.altRowColor" class="text-field form-control" value="5" />
+				    <label for="alt-row-color">{{'alt-row-color' | translate}}</label>
+				    <input id="alt-row-color" type="text"
+						ng-model="settings.params.altRowColor" class="form-control" value="5" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="background-color" data-i18n="background-color">
-							{{'background-color' | translate}}
-						</label>
-						<input id="background-color" name="background-color" type="text" ng-model="settings.params.backgroundColor" class="text-field form-control" value="5" />
+						<label for="background-color">{{'background-color' | translate}}</label>
+						<input id="background-color" type="text"
+						ng-model="settings.params.backgroundColor" class="form-control" value="5" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
-					    <label for="columns-to-display" data-i18n="columns.label">
-					    	{{'columns.label' | translate}}
-					    </label>
+					    <label for="columns-to-display">{{'columns.label' | translate}}</label>
 					    <button type="button"
 							class="btn btn-link btn-help"
-							data-toggle="popover" data-placement="right"
-							data-i18n="[data-content]columns.tooltip">
+							data-toggle="popover" data-placement="right">
 							<span class="glyphicons circle_question_mark"></span>
 						</button>
 						<div class="row">
 							<div class="col-md-3" ng-repeat="column in settings.additionalParams.columns">
 								<div class="checkbox">
-									<label for="columns-{{column.name}}" data-i18n="column.{{column.name}}">{{'columns.' + column.name | translate}}</label>
-									<input id="columns-{{column.name}}" ng-model="column.show" name="columns-{{column.name}}" type="checkbox" />
+									<label for="columns-{{column.name}}">{{'columns.' + column.name | translate}}</label>
+									<input id="columns-{{column.name}}" name="columns-{{column.name}}" type="checkbox"
+									ng-model="column.show" />
 								</div>
 							</div>
 						</div>
@@ -162,7 +179,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="checkbox">
-						<label for="terms" data-i18n="[append]default-layout">{{'default-layout' | translate}}
+						<label for="terms">{{'default-layout' | translate}}
 							<input id="terms" name="terms" type="checkbox" ng-model="settings.additionalParams.defaultLayout" />
 						</label>
 					</div>
@@ -171,36 +188,17 @@
 			<div class="row" ng-show="settings.additionalParams.defaultLayout === true">
 				<div class="col-md-7">
 					<div class="form-group">
-					    <label for="layout-url" data-i18n="layout-url">
+					    <label for="layout-url">
 					    	{{'layout-url' | translate}}
 					    </label>
-					    <input id="layout-url" name="layout-url" type="text" ng-model="settings.additionalParams.layoutUrl" class="text-field form-control" />
+					    <input id="layout-url" name="layout-url" type="text"
+							ng-model="settings.additionalParams.layoutUrl" class="form-control" />
 					</div>
 				</div>
 			-->
 			</div>
 		</form>
 	</div>
-
-<!--
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
--->
-  <link rel="stylesheet" href="https://s3.amazonaws.com/Common-Production/Settings/css/Settings.css" />
-
-	<!-- build:js settings/financial-table.min.js -->
-	<script src="components/angular/angular.js"></script>
-	<script src="components/angular-translate/angular-translate.js"></script>
-	<script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
-	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-	<script src="components/jquery/dist/jquery.min.js"></script>
-	<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="settings/settings-app.js"></script>
-	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
-	<script src="settings/ctr-financial-table-settings.js"></script>
-
-	<script src="components/widget-settings-ui-components/dist/js/angular/scroll-setting.js"></script>
-	<script src="components/widget-settings-ui-components/dist/js/angular/column-setting.js"></script>
-	<!-- endbuild -->
 
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-select/bootstrap-select.min.js"></script>
 	<script src="//s3.amazonaws.com/rise-common/scripts/bootstrap-form-helper/bootstrap-formhelpers.min.js"></script>
@@ -211,10 +209,6 @@
 	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
 
 	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
-
-	<!-- build:e2egadgets -->
-	<script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
-  <!-- endbuild -->
 
   <script type="text/javascript" src="../FinancialTable.min.js"></script>
 
