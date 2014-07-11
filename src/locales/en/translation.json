@@ -1,5 +1,10 @@
 {
 	"common": {
+		"buttons" : {
+			"save": "Save",
+			"cancel": "Cancel",
+			"help": "Help"
+		},
 		"font-variants": {
 			"label": "Font Variants",
 			"bold": "Bold",
@@ -7,9 +12,6 @@
 		}
 	},
 	"settings": "Financial Table Settings",
-	"save": "Save",
-	"cancel": "Cancel",
-	"help": "Help",
 	"instruments": "Instruments",
 	"scroll": {
 		"enabled": "Scroll Enabled",
