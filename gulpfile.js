@@ -6,7 +6,6 @@
   var gulp = require('gulp');
   var spawn = require('child_process').spawn;
   var gutil = require('gulp-util');
-  var connect = require('gulp-connect');
   var clean = require("gulp-clean");
   var concat = require("gulp-concat");
   var bump = require('gulp-bump');
@@ -17,16 +16,13 @@
   var uglify = require("gulp-uglify");
   var runSequence = require('gulp-run-sequence');
   var path = require('path');
-  var rename = require('gulp-rename');
-  var htmlreplace = require("gulp-html-replace");
-  var protractor = require('gulp-protractor').protractor;
-  var webdriver_update = require('gulp-protractor').webdriver_update;
-  var httpServer;
+  var rename = require("gulp-rename");
+  var factory = require("widget-tester").gulpTaskFactory;
 
   var appJSFiles = [
     "src/**/*.js",
     "test/**/*.js",
-    '!./src/components/**/*'
+    "!./src/components/**/*"
   ];
 
   var cssFiles = [
@@ -62,15 +58,6 @@
     .pipe(gulp.dest("dist/"));
   });
 
-  gulp.task("html:e2e", function () {
-    return gulp.src("./src/settings.html")
-      .pipe(htmlreplace({e2egadgets: "../test/gadget-mocks.js" }))
-      .pipe(rename(function (path) {
-        path.basename += "-e2e";
-      }))
-      .pipe(gulp.dest("./src/"));
-  });
-
   gulp.task("css", function () {
     return gulp.src(cssFiles)
       .pipe(minifyCSS({keepBreaks:true}))
@@ -83,54 +70,24 @@
     .pipe(gulp.dest("dist/locales"));
   });
 
-  gulp.task('e2e:server', ["config", "html:e2e"], function() {
-    httpServer = connect.server({
-      root: './',
-      port: 8099,
-      livereload: false
-    });
-    return httpServer;
-  });
-
-  gulp.task('test:e2e', ['html:e2e', 'e2e:server'], function () {
-      var tests = ['test/e2e/financial-table-scenarios.js'];
-
-      var casperChild = spawn('casperjs', ['test'].concat(tests));
-
-      casperChild.stdout.on('data', function (data) {
-          gutil.log('CasperJS:', data.toString().slice(0, -1)); // Remove \n
-      });
-
-      casperChild.on('close', function (code) {
-          var success = code === 0; // Will be 1 in the event of failure
-          connect.serverClose();
-          // Do something with success here
-          if(!success) {
-            throw 'CasperJS returned error.';
-          }
-      });
-  });
-
-  gulp.task('webdriver_update', webdriver_update);
-
-  gulp.task('test:e2e:settings', ['webdriver_update', "html:e2e", 'e2e:server'], function () {
-    return gulp.src(['./test/e2e/financial-table-settings-scenarios.js'])
-      .pipe(protractor({
-          configFile: './test/protractor.conf.js',
-          args: ['--baseUrl', 'http://127.0.0.1:8099/src/test-ng.html']
-      }))
-      .on('error', function (e) { console.log(e); throw e; })
-      .on('end', function () {
-        connect.serverClose();
-      });
-  });
 
   gulp.task('build', function (cb) {
       runSequence(['clean', 'config'], ["html", "css", "i18n"], cb);
   });
 
-  gulp.task('test', ['test:e2e:settings']);
+  gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
+  gulp.task("html:e2e", factory.htmlE2E());
+  gulp.task("test:e2e", ["html:e2e", "e2e:server"], factory.testE2E());
+  gulp.task("webdriver_update", factory.webdriveUpdate());
+  gulp.task("e2e:server-close", factory.testServerClose());
+  gulp.task("test:e2e:settings", ["webdriver_update", "html:e2e", "e2e:server"], factory.testE2EAngular());
 
-  gulp.task('default', ['build']);
+  gulp.task("test", function(cb) {
+    runSequence("test:e2e:settings", "e2e:server-close", cb);
+  });
+
+  gulp.task("default", function(cb) {
+    runSequence("test", "build", cb);
+  });
 
 })();
