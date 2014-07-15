@@ -12,6 +12,7 @@
     "bootstrap": "git://github.com/Rise-Vision/bootstrap#3.1.1-rv",
     "style-common": "git://github.com/Rise-Vision/style-common",
     "widget-settings-ui-core": "git://github.com/Rise-Vision/widget-settings-ui-core",
-    "widget-settings-ui-components": "git://github.com/Rise-Vision/widget-settings-ui-components"
+    "widget-settings-ui-components": "git://github.com/Rise-Vision/widget-settings-ui-components",
+    "spectrum": "git://github.com/Rise-Vision/spectrum"
   }
 }
