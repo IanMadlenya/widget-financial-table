@@ -14,20 +14,12 @@
 	"settings": "Financial Table Settings",
 	"instruments": "Instruments",
 	"scroll": {
-		"enabled": "Scroll Enabled",
-		"direction": {
-			"label": "Scroll Direction",
-			"none": "None",
-			"up": "Up",
-			"down": "Down"
-		},
 		"by": {
-			"label": "Scroll By",
+			"label": "Scrolling",
+			"none": "None",
 			"continuous": "Continuous",
-			"item": "Item",
 			"page": "Page"
 		},
-		"hold": "Scroll Hold",
 		"speed": {
 			"label": "Scroll Speed",
 			"slowest": "Slowest",
@@ -36,7 +28,7 @@
 			"fast": "Fast",
 			"fastest": "Fastest"
 		},
-		"resumes": "Scroll Resumes (seconds)"
+		"pause": "Scroll Pause (seconds)"
 	},
 	"row-padding": "Row Padding (pixels)",
 	"col-padding": "Column Padding (pixels)",

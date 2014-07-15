@@ -1,7 +1,6 @@
 angular.module('risevision.widget.financialTable.settings',
   ['risevision.widget.common',
-   'pascalprecht.translate',
-   'risevision.widget.common.scrollSetting'])
+   'pascalprecht.translate'])
   .config(['$translateProvider', function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
       prefix: 'locales/',
