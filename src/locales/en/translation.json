@@ -28,7 +28,10 @@
 			"fast": "Fast",
 			"fastest": "Fastest"
 		},
-		"pause": "Scroll Pause (seconds)"
+		"pause": {
+			"label": "Scroll Pause (seconds)",
+			"tooltip": "Number of seconds to pause after touch or the end of the list is reached"
+		}
 	},
 	"row-padding": "Row Padding (pixels)",
 	"col-padding": "Column Padding (pixels)",
