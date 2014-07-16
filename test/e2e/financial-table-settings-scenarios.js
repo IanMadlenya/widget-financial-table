@@ -27,8 +27,8 @@
         );
 
         //scroll enabled
-        expect(element(by.id("scroll-enabled")).getAttribute("checked")).
-          to.eventually.not.be.ok;
+        expect(element(by.css("input[name=scroll-by]:checked")).getAttribute("value")).
+          to.eventually.equal("none");
         expect(element(by.id("row-padding")).getAttribute("value")).
           to.eventually.equal('0');
         expect(element(by.id("col-padding")).getAttribute("value")).
@@ -36,11 +36,13 @@
     });
 
     it("Should display scroll settings when scroll is enabled", function () {
-      expect(element(by.id("scroll-enabled")).getAttribute("checked")).
-        to.eventually.not.be.ok;
+      expect(element(by.css("input[name=scroll-by]:checked")).getAttribute("value")).
+        to.eventually.equal("none");
       expect(element(by.css(".more-scroll-options")).isDisplayed()).to.eventually.be.false;
       //click on option, additional options appear
-      element(by.id("scroll-enabled")).click();
+      element(by.id("scroll-by-continuous")).click();
+      expect(element(by.css("input[name=scroll-by]:checked")).getAttribute("value")).
+        to.eventually.equal("continuous");
       expect(element(by.css(".more-scroll-options")).isDisplayed()).to.eventually.be.true;
     });
 

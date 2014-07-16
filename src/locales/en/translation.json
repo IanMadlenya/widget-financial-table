@@ -2,6 +2,7 @@
 	"common": {
 		"buttons" : {
 			"save": "Save",
+			"apply": "Apply",
 			"cancel": "Cancel",
 			"help": "Help"
 		},
@@ -33,28 +34,30 @@
 			"tooltip": "Number of seconds to pause after touch or the end of the list is reached"
 		}
 	},
-	"row-padding": "Row Padding (pixels)",
-	"col-padding": "Column Padding (pixels)",
-	"col-header-font": {
-		"font": "Column Header Font",
-		"font-url": "Column Header Font URL",
-		"font-size": "Column Header Font Size",
-		"modal-title": "Fonts",
-		"font-variants": "Font Variants",
-		"color": "Column Header Color",
-		"text": "Column Header Sample Text"
+	"table": {
+		"row-padding": "Row Padding (pixels)",
+		"col-padding": "Column Padding (pixels)",
+		"col-header-font": {
+			"font": "Column Header Font",
+			"font-url": "Column Header Font URL",
+			"font-size": "Column Header Font Size",
+			"modal-title": "Fonts",
+			"font-variants": "Font Variants",
+			"color": "Column Header Color",
+			"text": "Column Header Sample Text"
+		},
+		"data-font": {
+			"font": "Data Font",
+			"font-url": "Data Font URL",
+			"font-size": "Data Font Size",
+			"modal-title": "Fonts",
+			"font-variants": "Font Variants",
+			"color": "Data Color",
+			"text": "Data Sample Text"
+		},
+		"row-color": "Row Color",
+		"alt-row-color": "Alternate Row Color"
 	},
-	"data-font": {
-		"font": "Data Font",
-		"font-url": "Data Font URL",
-		"font-size": "Data Font Size",
-		"modal-title": "Fonts",
-		"font-variants": "Font Variants",
-		"color": "Data Color",
-		"text": "Data Sample Text"
-	},
-	"row-color": "Row Color",
-	"alt-row-color": "Alternate Row Color",
 	"columns": {
 		"label": "Select Field(s) to Display",
 		"instrument": "Instrument",
