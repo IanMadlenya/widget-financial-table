@@ -65,6 +65,11 @@
       .pipe(gulp.dest("dist/css"));
   });
 
+  gulp.task("fonts", function() {
+    return gulp.src("src/components/boostrap/fonts/**/*")
+      .pipe(gulp.dest("dist/fonts"));
+  });
+
   gulp.task("i18n", function() {
     return gulp.src("src/locales/**/*.json")
     .pipe(gulp.dest("dist/locales"));
@@ -72,7 +77,7 @@
 
 
   gulp.task('build', function (cb) {
-      runSequence(['clean', 'config'], ["html", "css", "i18n"], cb);
+      runSequence(['clean', 'config'], ["html", "css", "fonts", "i18n"], cb);
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
