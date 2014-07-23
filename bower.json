@@ -13,6 +13,8 @@
     "style-common": "git://github.com/Rise-Vision/style-common",
     "widget-settings-ui-core": "git://github.com/Rise-Vision/widget-settings-ui-core",
     "widget-settings-ui-components": "git://github.com/Rise-Vision/widget-settings-ui-components",
-    "spectrum": "git://github.com/Rise-Vision/spectrum"
+    "component-financial-selector": "git://github.com/Rise-Vision/component-financial-selector",
+    "spectrum": "git://github.com/Rise-Vision/spectrum",
+    "select2": "git://github.com/ivaynberg/select2"
   }
 }
