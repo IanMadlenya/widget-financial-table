@@ -12,7 +12,6 @@
   var html2string = require('gulp-html2string');
   var jshint = require("gulp-jshint");
   var minifyCSS = require("gulp-minify-css");
-  var usemin = require("gulp-usemin");
   var uglify = require("gulp-uglify");
   var runSequence = require('gulp-run-sequence');
   var path = require('path');
@@ -52,9 +51,6 @@
 
   gulp.task("html", ["lint"], function () {
     return gulp.src(['./src/*.html'])
-      .pipe(usemin({
-      js: [uglify({mangle:false, outSourceMap: true})] //disable mangle just for $routeProvider in controllers.js
-    }))
     .pipe(gulp.dest("dist/"));
   });
 
@@ -104,6 +100,7 @@
   gulp.task("webdriver_update", factory.webdriveUpdate());
   gulp.task("e2e:server-close", factory.testServerClose());
   gulp.task("test:e2e:settings", ["webdriver_update", "html:e2e", "e2e:server"], factory.testE2EAngular());
+  gulp.task("test:metrics", factory.metrics());
 
   gulp.task("test", function(cb) {
     runSequence("test:unit:ng", "test:e2e:settings", "e2e:server-close", "test:metrics", cb);
