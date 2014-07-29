@@ -17,14 +17,14 @@
     });
 
     it("Should correctly load default settings", function () {
-      
+
         //scroll enabled
         expect(element(by.css("input[name=scroll-by]:checked")).getAttribute("value")).
           to.eventually.equal("none");
-        expect(element(by.id("row-padding")).getAttribute("value")).
-          to.eventually.equal("0");
-        expect(element(by.id("col-padding")).getAttribute("value")).
-          to.eventually.equal("0");
+        expect(element(by.id("columns-instrument")).getAttribute("checked")).
+          to.eventually.be.defined;
+        expect(element(by.id("columns-instrument-logo")).getAttribute("checked")).
+          to.eventually.be.defined;
     });
 
     it("Should display scroll settings when scroll is enabled", function () {
