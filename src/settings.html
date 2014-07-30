@@ -14,8 +14,7 @@
 	<link rel="stylesheet" href="//s3.amazonaws.com/rise-common-test/styles/glyphicons/glyphicons.min.css">
 
 	<!-- build:css css/all.min.css -->
-	<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="components/style-common/dist/css/rise.min.css">
+	<link rel="stylesheet" href="components/style-guide/dist/css/rise.min.css">
 	<link rel="stylesheet" href="components/spectrum/spectrum.css">
 	<link rel="stylesheet" href="components/select2/select2.css">
 	<link rel="stylesheet" href="components/component-financial-selector/dist/css/all.css">
@@ -37,7 +36,7 @@
 	<script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
 	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 	<script src="components/jquery/dist/jquery.min.js"></script>
-	<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
 	<script src="settings/settings-app.js"></script>
 	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
 	<script src="settings/ctr-financial-table-settings.js"></script>
@@ -131,9 +130,11 @@
 						<div class="row">
 							<div class="col-md-3" ng-repeat="column in settings.additionalParams.columns">
 								<div class="checkbox">
-									<label for="columns-{{column.name}}">{{'columns.' + column.name | translate}}</label>
-									<input id="columns-{{column.name}}" name="columns-{{column.name}}" type="checkbox"
-									ng-model="column.show" />
+									<label for="columns-{{column.name}}">
+										<input id="columns-{{column.name}}" name="columns-{{column.name}}" type="checkbox"
+										ng-model="column.show" />
+										{{'columns.' + column.name | translate}}
+									</label>
 								</div>
 							</div>
 						</div>
