@@ -1,7 +1,64 @@
 angular.module("risevision.widget.financialTable.settings")
-  .controller("financialTableSettingsController", ["$scope", "settingsSaver", "settingsGetter",
-    function ($scope, settingsSaver, settingsGetter) {
+  .controller("financialTableSettingsController", ["$scope",
+    function ($scope) {
 
+      $scope.financialColumns = [
+        {
+          name: "instrument",
+          type: "text"
+        },
+        {
+          name: "instrument-logo",
+          type: "text"
+        },
+        {
+          name: "instrument-name",
+          type: "text"
+        },
+        {
+          name: "last-price"
+        },
+        {
+          name: "previous-close"
+        },
+        {
+          name: "change"
+        },
+        {
+          name: "percent-change"
+        },
+        {
+          name: "accumulated-volume"
+        },
+        {
+          name: "day-high"
+        },
+        {
+          name: "day-low"
+        },
+        {
+          name: "52-week-high"
+        },
+        {
+          name: "52-week-low"
+        },
+        {
+          name: "bid"
+        },
+        {
+          name: "ask"
+        },
+        {
+          name: "yield"
+        },
+        {
+          name: "yield-change"
+        },
+        {
+          name: "trade-time",
+          type: "text"
+        }
+      ];
 
   }])
   .value("defaultSettings", {
@@ -48,57 +105,10 @@ angular.module("risevision.widget.financialTable.settings")
       columns: [
         {
           name: "instrument",
-          show: true,
           alignment: "right"
         },
         {
-          name: "instrument-logo",
-          show: true
-        },
-        {
-          name: "instrument-name"
-        },
-        {
-          name: "last-price"
-        },
-        {
-          name: "previous-close"
-        },
-        {
-          name: "change"
-        },
-        {
-          name: "percent-change"
-        },
-        {
-          name: "accumulated-volume"
-        },
-        {
-          name: "day-high"
-        },
-        {
-          name: "day-low"
-        },
-        {
-          name: "52-week-high"
-        },
-        {
-          name: "52-week-low"
-        },
-        {
-          name: "bid"
-        },
-        {
-          name: "ask"
-        },
-        {
-          name: "yield"
-        },
-        {
-          name: "yield-change"
-        },
-        {
-          name: "trade-time"
+          name: "instrument-logo"
         }
       ]
     }
