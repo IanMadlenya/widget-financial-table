@@ -92,6 +92,7 @@
       "src/config/test.js",
       "src/components/widget-settings-ui-core/dist/widget-settings-ui-core.js",
       "src/components/component-financial-selector/dist/js/financial-selector.js",
+      "src/components/widget-settings-ui-components/dist/js/angular/*.js",
       "src/settings/settings-app.js",
       "src/settings/**/*.js",
       "test/unit/**/*spec.js"]}
