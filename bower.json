@@ -9,11 +9,9 @@
     "angular-translate-loader-url": "~2.2.0",
     "jquery": "1.11.0",
     "underscore": "1.6.0",
-    "style-guide": "git://github.com/Rise-Vision/style-guide",
-    "widget-settings-ui-core": "git://github.com/Rise-Vision/widget-settings-ui-core",
-    "widget-settings-ui-components": "git://github.com/Rise-Vision/widget-settings-ui-components",
-    "component-financial-selector": "git://github.com/Rise-Vision/component-financial-selector",
-    "spectrum": "git://github.com/Rise-Vision/spectrum",
-    "select2": "git://github.com/ivaynberg/select2"
+    "style-guide": "https://github.com/Rise-Vision/style-guide.git",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git",
+    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git",
+    "component-financial-selector": "https://github.com/Rise-Vision/component-financial-selector.git"
   }
 }
