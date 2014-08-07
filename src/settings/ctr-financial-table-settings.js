@@ -16,43 +16,56 @@ angular.module("risevision.widget.financialTable.settings")
           type: "text"
         },
         {
-          name: "last-price"
+          name: "last-price",
+          type: "int"
         },
         {
-          name: "previous-close"
+          name: "previous-close",
+          type: "int"
         },
         {
-          name: "change"
+          name: "change",
+          type: "int"
         },
         {
-          name: "percent-change"
+          name: "percent-change",
+          type: "int"
         },
         {
-          name: "accumulated-volume"
+          name: "accumulated-volume",
+          type: "int"
         },
         {
-          name: "day-high"
+          name: "day-high",
+          type: "int"
         },
         {
-          name: "day-low"
+          name: "day-low",
+          type: "int"
         },
         {
-          name: "52-week-high"
+          name: "52-week-high",
+          type: "int"
         },
         {
-          name: "52-week-low"
+          name: "52-week-low",
+          type: "int"
         },
         {
-          name: "bid"
+          name: "bid",
+          type: "int"
         },
         {
-          name: "ask"
+          name: "ask",
+          type: "int"
         },
         {
-          name: "yield"
+          name: "yield",
+          type: "int"
         },
         {
-          name: "yield-change"
+          name: "yield-change",
+          type: "int"
         },
         {
           name: "trade-time",
