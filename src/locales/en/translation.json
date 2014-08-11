@@ -13,9 +13,17 @@
 		}
 	},
 	"settings": "Financial Table Settings",
-	"instruments": "Instruments",
+	"instruments": {
+		"label": "Instruments",
+		"error": {
+			"required": "Please select some instruments to display."
+		}
+	},
 	"columns": {
 		"label": "Select Field(s) to Display",
+		"error": {
+			"required": "Please add some fields to the table."
+		},
 		"instrument": "Instrument",
 		"instrument-logo": "Instrument Logo",
 		"instrument-name": "Instrument Name",

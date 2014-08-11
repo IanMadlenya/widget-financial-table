@@ -83,7 +83,8 @@
       </h2>
       <div class="sticky-wrapper">
         <div class="btn-toolbar sticky-buttons">
-          <button id="save" class="btn btn-primary" type="button" ng-click="saveSettings();">
+          <button id="save" class="btn btn-primary" type="button"
+						ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
             <span>{{'common.buttons.save' | translate}}</span>
             <i class="glyphicons white ok_2 icon-right"></i>
           </button>
@@ -99,12 +100,16 @@
       </div>
     </div>
     <div id="settings-alert" class="alert alert-danger" ng-show="onError"></div>
-		<form role="form">
+		<form role="form" name="settingsform">
 			<div class="row">
 				<div class="col-md-7">
-					<div class="form-group">
-						<label for="instruments">{{'instruments' | translate}}</label>
-						<div financial-selector instruments="settings.params.instruments"></div>
+					<div ng-class="{'form-group':true, 'has-error':settingsform.instruments.$invalid}">
+						<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
+						<div name="instruments" financial-selector instruments="settings.params.instruments"
+							ng-model="financialselector" required></div>
+						<small class="help-block" ng-show="settingsform.instruments.$error.required">
+							{{'instruments.error.required' | translate}}
+						</small>
 					</div>
 				</div>
 			</div>
@@ -119,7 +124,22 @@
 					</div>
 				</div>
 			</div>
-			<column-selector columns="settings.additionalParams.columns" column-names="financialColumns"></column-selector>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div ng-class="{'form-group':true, 'has-error':settingsform.columns.$invalid}">
+					  <label for="columns" class="control-label">{{'columns.label' | translate}}</label>
+						<tooltip data-toggle="popover" data-placement="right"
+							data-content="{{'columns.tooltip' | translate}}">
+						</tooltip>
+						<column-selector name="columns"	columns="settings.additionalParams.columns" column-names="financialColumns"
+							ng-model="columnselector" required></column-selector>
+						<small class="help-block" ng-show="settingsform.columns.$error.required">
+							{{'columns.error.required' | translate}}
+						</small>
+					</div>
+				</div>
+			</div>
 			<!--
 			<div class="row">
 				<div class="col-md-12">
