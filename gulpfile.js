@@ -128,6 +128,7 @@
 
   gulp.task("test:unit:ng", factory.testUnitAngular(
     {testFiles: [
+      "src/components/jquery/dist/jquery.min.js",
       "src/components/q/q.js",
       "src/components/angular/angular.js",
       "src/components/angular-route/angular-route.js",
@@ -136,6 +137,7 @@
       "src/components/angular-translate-loader-url/angular-translate-loader-url.js",
       "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
       "src/config/test.js",
+      "src/components/bootstrap-form-components/dist/js/**/*.js",
       "src/components/widget-settings-ui-core/dist/widget-settings-ui-core.js",
       "src/components/component-financial-selector/dist/js/financial-selector.js",
       "src/components/widget-settings-ui-components/dist/js/angular/*.js",
