@@ -108,7 +108,7 @@ angular.module("risevision.widget.financialTable.settings")
         "WMT.N",
         "XOM.N"
       ],
-      backgroundColor: "transparent"
+      background: {}
     },
     additionalParams: {
       scroll: {

@@ -1,14 +1,14 @@
 angular.module("risevision.widget.financialTable.settings",
   ["risevision.widget.common",
   "risevision.widget.common.translate",
-  "risevision.widget.common.alignment",
   "risevision.widget.common.color-picker",
   "risevision.widget.common.financial",
   "risevision.widget.common.tooltip",
   "risevision.widget.common.font-setting",
   "risevision.widget.common.scroll-setting",
   "risevision.widget.common.table-setting",
-  "risevision.widget.common.column-selector"]);
+  "risevision.widget.common.column-selector",
+  "risevision.widget.common.background-setting"]);
 
 angular.module("risevision.widget.common.translate", ["pascalprecht.translate"])
   .config(["$translateProvider", function ($translateProvider) {
