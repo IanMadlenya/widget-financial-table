@@ -59,7 +59,10 @@
   gulp.task("html", ["lint"], function () {
     return gulp.src(['./src/*.html'])
     .pipe(usemin({
-      js: [uglify({mangle:false, outSourceMap: true})] //disable mangle just for $routeProvider in controllers.js
+      js: [uglify({
+        mangle:true,
+        outSourceMap: false // source map generation doesn't seem to function correctly
+      })]
     }))
     .pipe(gulp.dest("dist/"));
   });
@@ -72,8 +75,13 @@
   });
 
   gulp.task("fonts", function() {
-    return gulp.src("src/components/style-guide/dist/fonts/**/*")
+    return gulp.src("src/components/common-style/dist/fonts/**/*")
       .pipe(gulp.dest("dist/fonts"));
+  });
+
+  gulp.task("images", function() {
+    return gulp.src(["src/components/select2/*.png", "src/components/select2/*.gif"])
+      .pipe(gulp.dest("dist/css"));
   });
 
   gulp.task("json-move", function() {
@@ -119,7 +127,7 @@
 
 
   gulp.task('build', function (cb) {
-      runSequence(["clean", "config"], ["html", "css", "fonts", "i18n"], cb);
+      runSequence(["clean", "config"], ["html", "css", "fonts", "images", "i18n"], cb);
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
