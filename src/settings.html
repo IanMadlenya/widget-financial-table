@@ -28,6 +28,7 @@
 	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 	<script src="components/jquery/dist/jquery.min.js"></script>
 	<script src="components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+	<script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 	<script src="settings/settings-app.js"></script>
 	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
 	<script src="settings/ctr-financial-table-settings.js"></script>
@@ -71,89 +72,90 @@
 
 </head>
 <body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController">
-	<div class="widget-overlay"></div>
-	<div class="widget-wrapper container modal-content" scroll-on-alerts ng-controller="financialTableSettingsController">
-		<div class="modal-header">
-		  <h2 id="settings-title"> {{'settings' | translate }}
-        <button id="settings-close" type="button" class="close"
-                aria-hidden="true">
-          <i class="glyphicons remove_2"></i>
-        </button>
-      </h2>
-      <div class="sticky-wrapper">
-        <div class="btn-toolbar sticky-buttons">
-          <button id="save" class="btn btn-primary" type="button"
-						ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
-            <span>{{'common.buttons.save' | translate}}</span>
-            <i class="glyphicons white ok_2 icon-right"></i>
-          </button>
-          <button id="cancel" class="btn btn-primary" type="button">
-            <span>{{'common.buttons.cancel' | translate}}</span>
-            <i class="glyphicons white remove_2 icon-right"></i>
-          </button>
-          <button id="help" class="btn btn-primary" type="button">
-            <span>{{'common.buttons.help' | translate}}</span>
-            <i class="glyphicons white circle_question_mark icon-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="settings-alert" class="alert alert-danger" ng-show="onError"></div>
-		<form role="form" name="settingsform">
-			<div class="row">
-				<div class="col-md-7">
-					<div ng-class="{'form-group':true, 'has-error':settingsform.instruments.$invalid}">
-						<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
-						<div name="instruments" financial-selector instruments="settings.params.instruments"
-							ng-model="financialselector" required></div>
-						<small class="help-block" ng-show="settingsform.instruments.$error.required">
-							{{'instruments.error.required' | translate}}
-						</small>
+	<div class="widget">
+		<div class="overlay"></div>
+		<div class="settings">
+			<div class="wrapper container modal-content" scroll-on-alerts ng-controller="financialTableSettingsController">
+				<div class="modal-header">
+				  <h2 id="settings-title"> {{'settings' | translate }}
+		        <button id="settings-close" type="button" class="close"
+		                aria-hidden="true">
+		          <i class="glyphicons remove_2"></i>
+		        </button>
+		      </h2>
+		      <div class="sticky-wrapper">
+		        <div class="btn-toolbar sticky-buttons">
+		          <button id="save" class="btn btn-primary" type="button"
+								ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
+		            <span>{{'common.buttons.save' | translate}}</span>
+		            <i class="glyphicons white ok_2 icon-right"></i>
+		          </button>
+		          <button id="cancel" class="btn btn-primary" type="button"
+								ng-click="cancelSettings();">
+		            <span>{{'common.buttons.cancel' | translate}}</span>
+		            <i class="glyphicons white remove_2 icon-right"></i>
+		          </button>
+		          <button id="help" class="btn btn-primary" type="button">
+		            <span>{{'common.buttons.help' | translate}}</span>
+		            <i class="glyphicons white circle_question_mark icon-right"></i>
+		          </button>
+		        </div>
+		      </div>
+		    </div>
+		    <div id="settings-alert" class="alert alert-danger" ng-show="onError"></div>
+				<form role="form" name="settingsform">
+					<div class="row">
+						<div class="col-md-12">
+							<div ng-class="{'form-group':true, 'has-error':settingsform.instruments.$invalid}">
+								<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
+								<div name="instruments" financial-selector instruments="settings.params.instruments"
+									ng-model="financialselector" required></div>
+								<p class="text-danger" ng-show="settingsform.instruments.$error.required">
+									{{'instruments.error.required' | translate}}
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<scroll-setting scroll="settings.additionalParams.scroll"></scroll-setting>
-			<table-setting table="settings.additionalParams.table"></table-setting>
-			<background-setting background="settings.params.background"></background-setting>
+					<scroll-setting scroll="settings.additionalParams.scroll"></scroll-setting>
+					<table-setting table="settings.additionalParams.table"></table-setting>
+					<background-setting background="settings.params.background"></background-setting>
 
-			<div class="row">
-				<div class="col-md-8">
-					<div ng-class="{'form-group':true, 'has-error':settingsform.columns.$invalid}">
-					  <label for="columns" class="control-label">{{'columns.label' | translate}}</label>
-						<tooltip data-toggle="popover" data-placement="right"
-							data-content="{{'columns.tooltip' | translate}}">
-						</tooltip>
-						<column-selector name="columns"	columns="settings.additionalParams.columns" column-names="financialColumns"
-							ng-model="columnselector" required></column-selector>
-						<small class="help-block" ng-show="settingsform.columns.$error.required">
-							{{'columns.error.required' | translate}}
-						</small>
+					<div class="row">
+						<div class="col-md-12">
+							<div ng-class="{'form-group':true, 'has-error':settingsform.columns.$invalid}">
+								<column-selector name="columns"	columns="settings.additionalParams.columns" column-names="financialColumns"
+									ng-model="columnselector" required></column-selector>
+								<p class="text-danger" ng-show="settingsform.columns.$error.required">
+									{{'columns.error.required' | translate}}
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<!--
-			<div class="row">
-				<div class="col-md-12">
-					<div class="checkbox">
-						<label for="terms">{{'default-layout' | translate}}
-							<input id="terms" name="terms" type="checkbox" ng-model="settings.additionalParams.defaultLayout" />
-						</label>
+					<!--
+					<div class="row">
+						<div class="col-md-12">
+							<div class="checkbox">
+								<label for="terms">{{'default-layout' | translate}}
+									<input id="terms" name="terms" type="checkbox" ng-model="settings.additionalParams.defaultLayout" />
+								</label>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row" ng-show="settings.additionalParams.defaultLayout === true">
-				<div class="col-md-7">
-					<div class="form-group">
-					    <label for="layout-url">
-					    	{{'layout-url' | translate}}
-					    </label>
-					    <input id="layout-url" name="layout-url" type="text"
-							ng-model="settings.additionalParams.layoutUrl" class="form-control" />
+					<div class="row" ng-show="settings.additionalParams.defaultLayout === true">
+						<div class="col-md-7">
+							<div class="form-group">
+							    <label for="layout-url">
+							    	{{'layout-url' | translate}}
+							    </label>
+							    <input id="layout-url" name="layout-url" type="text"
+									ng-model="settings.additionalParams.layoutUrl" class="form-control" />
+							</div>
+						</div>
+					-->
 					</div>
-				</div>
-			-->
+				</form>
 			</div>
-		</form>
+		</div>
 	</div>
 
 	<script src="//s3.amazonaws.com/rise-common/scripts/i18next/i18next.min.js"></script>

@@ -144,6 +144,7 @@
       "src/components/angular-translate/angular-translate.js",
       "src/components/angular-translate-loader-url/angular-translate-loader-url.js",
       "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+      "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
       "src/config/test.js",
       "src/components/bootstrap-form-components/dist/js/**/*.js",
       "src/components/widget-settings-ui-core/dist/widget-settings-ui-core.js",
