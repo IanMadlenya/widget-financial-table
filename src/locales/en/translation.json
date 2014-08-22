@@ -20,7 +20,6 @@
 		}
 	},
 	"columns": {
-		"label": "Select Field(s) to Display",
 		"error": {
 			"required": "Please add some fields to the table."
 		},
