@@ -79,7 +79,7 @@
 				<div class="modal-header">
 				  <h2 id="settings-title"> {{'settings' | translate }}
 		        <button id="settings-close" type="button" class="close"
-		                aria-hidden="true">
+		          ng-click="closeSettings();">
 		          <i class="glyphicons remove_2"></i>
 		        </button>
 		      </h2>
@@ -91,7 +91,7 @@
 		            <i class="glyphicons white ok_2 icon-right"></i>
 		          </button>
 		          <button id="cancel" class="btn btn-primary" type="button"
-								ng-click="cancelSettings();">
+								ng-click="closeSettings();">
 		            <span>{{'common.buttons.cancel' | translate}}</span>
 		            <i class="glyphicons white remove_2 icon-right"></i>
 		          </button>
