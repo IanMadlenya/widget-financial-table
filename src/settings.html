@@ -80,12 +80,13 @@
 				  <h2 id="settings-title"> {{'settings' | translate }}
 		        <button id="settings-close" type="button" class="close"
 		          ng-click="closeSettings();">
-		          <i class="glyphicons remove_2"></i>
+          		<span>×</span>
+							<span class="sr-only">Close</span>
 		        </button>
 		      </h2>
 		      <div class="sticky-wrapper">
 		        <div class="btn-toolbar sticky-buttons">
-		          <button id="save" class="btn btn-primary" type="button"
+		          <button id="save" class="btn btn-success btn-fixed-width" type="button"
 								ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
 		            <span>{{'common.buttons.save' | translate}}</span>
 		            <i class="glyphicons white ok_2 icon-right"></i>
@@ -95,9 +96,9 @@
 		            <span>{{'common.buttons.cancel' | translate}}</span>
 		            <i class="glyphicons white remove_2 icon-right"></i>
 		          </button>
-		          <button id="help" class="btn btn-primary" type="button">
+		          <button id="help" class="btn btn-fixed-width btn-rv-help" type="button">
 		            <span>{{'common.buttons.help' | translate}}</span>
-		            <i class="glyphicons white circle_question_mark icon-right"></i>
+		            <i class="glyphicons circle_question_mark icon-right"></i>
 		          </button>
 		        </div>
 		      </div>
