@@ -16,7 +16,7 @@
   var minifyCSS = require("gulp-minify-css");
   var usemin = require("gulp-usemin");
   var uglify = require("gulp-uglify");
-  var runSequence = require('gulp-run-sequence');
+  var runSequence = require('run-sequence');
   var path = require('path');
   var rename = require("gulp-rename");
   var factory = require("widget-tester").gulpTaskFactory;
@@ -142,7 +142,6 @@
       "src/components/angular-route/angular-route.js",
       "src/components/angular-mocks/angular-mocks.js",
       "src/components/angular-translate/angular-translate.js",
-      "src/components/angular-translate-loader-url/angular-translate-loader-url.js",
       "src/components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
       "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
       "src/config/test.js",
