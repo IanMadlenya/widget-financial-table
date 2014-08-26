@@ -92,7 +92,7 @@
           "name":"instrument",
           "alignment":"right",
           "type":"text",
-          "width":"100px",
+          "width":"100",
           "decimals":0,
           "sign":"arrow",
           "colorCondition":"none"
@@ -101,7 +101,7 @@
           "name":"instrument-logo",
           "type":"text",
           "alignment":"left",
-          "width":"100px",
+          "width":"100",
           "decimals":0,
           "sign":"arrow",
           "colorCondition":"none"
