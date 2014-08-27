@@ -44,7 +44,12 @@
 	"background-color": "Background Color",
 	"default-layout": "Default Layout",
 	"layout-url": "Layout URL",
-	"terms": "I acknowledge that there is currently no charge for this Widget, but at a date that has yet to be determined, it will cost $2 per Display, per month.  At that time I will have 30 days to decide if I wish to continue using this Widget.",
-	"acknoweldge": ""
-
+	"disclaimer": {
+		"heading": "Note",
+		"warning": "The following disclaimer will appear on the bottom right-hand corner of the table:",
+		"font": {
+			"heading": "Disclaimer Font",
+			"text": "Market Data by Thompson Reuters- Delayed 20 Minutes"
+		}
+	}
 }

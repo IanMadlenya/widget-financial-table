@@ -118,11 +118,17 @@ angular.module("risevision.widget.financialTable.settings")
       columns: [
         {
           name: "instrument",
-          alignment: "right"
         },
         {
           name: "instrument-logo"
         }
-      ]
+      ],
+      disclaimer: {
+        font: {
+          size: "9",
+          italic: true,
+          align: "right"
+        }
+      }
     }
   });
