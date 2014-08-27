@@ -90,8 +90,8 @@
       },
       "columns": [{
           "name":"instrument",
-          "alignment":"right",
           "type":"text",
+          "alignment":"left",
           "width":"100",
           "decimals":0,
           "sign":"arrow",
@@ -106,7 +106,23 @@
           "sign":"arrow",
           "colorCondition":"none"
         }
-      ]
+      ],
+      "disclaimer": {
+        "font": {
+          "size":"9",
+          "italic":true,
+          "align":"right",
+          "font": {
+            "type":"standard",
+            "name":"Verdana",
+            "family":"Verdana"
+          },
+          "bold":false,
+          "underline":false,
+          "color":"black",
+          "highlightColor":"transparent"
+        }
+      }
     }
   };
 
