@@ -169,7 +169,7 @@
     });
 
     it("If all columns are removed, form should be invalid", function () {
-      element.all(by.css(".panel-group div.panel a.glyphicon")).then(function (elements) {
+      element.all(by.css(".panel-group div.panel a.fa")).then(function (elements) {
         elements[1].click();
         elements[0].click();
 
