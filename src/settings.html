@@ -115,10 +115,6 @@
 							</div>
 						</div>
 					</div>
-					<scroll-setting scroll="settings.additionalParams.scroll"></scroll-setting>
-					<table-setting table="settings.additionalParams.table"></table-setting>
-					<background-setting background="settings.params.background"></background-setting>
-
 					<div class="row">
 						<div class="col-md-12">
 							<div ng-class="{'form-group':true, 'has-error':settingsform.columns.$invalid}">
@@ -130,9 +126,10 @@
 							</div>
 						</div>
 					</div>
-
+					<scroll-setting scroll="settings.additionalParams.scroll"></scroll-setting>
+					<table-setting table="settings.additionalParams.table"></table-setting>
 					<div class="section">
-					  <h5>{{'disclaimer.heading' | translate}}</h5>
+						<h5>{{'disclaimer.heading' | translate}}</h5>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="text-warning">{{'disclaimer.warning' | translate}}</p>
@@ -140,10 +137,11 @@
 									<font-setting font-data="settings.additionalParams.disclaimer.font"
 											preview-text="{{'disclaimer.font.text' | translate}}" hide-alignment="true">
 									</font-setting>
-			          </div>
-			        </div>
-			      </div>
+								</div>
+							</div>
+						</div>
 					</div>
+					<background-setting background="settings.params.background"></background-setting>
 					<!--
 					<div class="row">
 						<div class="col-md-12">

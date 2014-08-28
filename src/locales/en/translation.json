@@ -45,7 +45,7 @@
 	"default-layout": "Default Layout",
 	"layout-url": "Layout URL",
 	"disclaimer": {
-		"heading": "Note",
+		"heading": "Disclaimer",
 		"warning": "The following disclaimer will appear on the bottom right-hand corner of the table:",
 		"font": {
 			"heading": "Disclaimer Font",
