@@ -2,6 +2,10 @@ angular.module("risevision.widget.financialTable.settings")
   .controller("financialTableSettingsController", ["$scope",
     function ($scope) {
 
+      $scope.productCode = "e13842bc7fbddcda07f15187a541cfafdc294b7a";
+      $scope.productId = "2005";
+      $scope.companyId = "6d0ce73d-7cc8-4951-841f-e3a6405145aa";
+
       $scope.financialColumns = [
         {
           name: "instrument",
