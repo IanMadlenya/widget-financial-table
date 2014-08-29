@@ -1,7 +1,6 @@
 angular.module("risevision.widget.financialTable.settings",
   ["risevision.widget.common",
   "risevision.widget.common.translate",
-  "risevision.widget.common.color-picker",
   "risevision.widget.common.financial",
   "risevision.widget.common.tooltip",
   "risevision.widget.common.font-setting",

@@ -132,7 +132,6 @@
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
   gulp.task("html:e2e", factory.htmlE2E());
-  gulp.task("test:e2e", ["html:e2e", "e2e:server"], factory.testE2E());
 
   gulp.task("test:unit:ng", factory.testUnitAngular(
     {testFiles: [
