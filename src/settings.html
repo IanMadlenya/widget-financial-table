@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="components/select2/select2.css">
 	<link rel="stylesheet" href="components/bootstrap-select/bootstrap-select.css">
 	<link rel="stylesheet" href="components/rv-bootstrap-formhelpers/dist/css/rv-bootstrap-formhelpers.css">
+	<link rel="stylesheet" href="components/component-subscription-status/dist/css/subscription-status.css">
   <!-- endbuild -->
 
 	<!-- build:js js/settings.min.js -->
@@ -53,6 +54,7 @@
 	<script src="components/widget-settings-ui-components/dist/js/angular/background-setting.js"></script>
 
 	<script src="components/component-financial-selector/dist/js/financial-selector.js"></script>
+	<script src="components/component-subscription-status/dist/js/subscription-status.js"></script>
 
 	<script src="components/spectrum/spectrum.js"></script>
 	<script src="components/select2/select2.js"></script>
@@ -81,6 +83,9 @@
 							<span class="sr-only">Close</span>
 		        </button>
 		      </h1>
+					<div id="subscription-status" subscription-status
+					product-id="{{productId}}" product-code="{{productCode}}" company-id="{{companyId}}
+					"ng-model="subscribed"></div>
 		      <div class="sticky-wrapper">
 		        <div class="btn-toolbar sticky-buttons">
 		          <button id="save" class="btn btn-success btn-fixed-width" type="button"

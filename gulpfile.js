@@ -147,6 +147,7 @@
       "src/components/bootstrap-form-components/dist/js/**/*.js",
       "src/components/widget-settings-ui-core/dist/widget-settings-ui-core.js",
       "src/components/component-financial-selector/dist/js/financial-selector.js",
+      "src/components/component-subscription-status/dist/js/subscription-status.js",
       "src/components/widget-settings-ui-components/dist/js/angular/*.js",
       "src/settings/settings-app.js",
       "src/settings/**/*.js",
