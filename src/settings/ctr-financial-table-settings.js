@@ -1,10 +1,10 @@
 angular.module("risevision.widget.financialTable.settings")
-  .controller("financialTableSettingsController", ["$scope",
-    function ($scope) {
+  .controller("financialTableSettingsController", ["$scope", "PRODUCT_CODE", "PRODUCT_ID",
+    function ($scope, PRODUCT_CODE, PRODUCT_ID) {
 
-      $scope.productCode = "e13842bc7fbddcda07f15187a541cfafdc294b7a";
-      $scope.productId = "2005";
-      $scope.companyId = "6d0ce73d-7cc8-4951-841f-e3a6405145aa";
+      $scope.PRODUCT_CODE = PRODUCT_CODE;
+      $scope.PRODUCT_ID = PRODUCT_ID;
+      $scope.companyId = "f114ad26-949d-44b4-87e9-8528afc76ce4";
 
       $scope.financialColumns = [
         {

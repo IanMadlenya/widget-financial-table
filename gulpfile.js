@@ -44,7 +44,7 @@
     var env = process.env.NODE_ENV || 'dev';
     gutil.log('Environment is', env);
 
-    return gulp.src(['./js/config/' + env + '.js'])
+    return gulp.src(['./src/config/' + env + '.js'])
       .pipe(rename('config.js'))
       .pipe(gulp.dest('./src/config'));
   });
