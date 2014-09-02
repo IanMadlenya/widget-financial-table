@@ -1,5 +1,6 @@
 angular.module("risevision.widget.financialTable.settings",
-  ["risevision.widget.common",
+  ["risevision.widget.financialTable.config",
+  "risevision.widget.common",
   "risevision.widget.common.translate",
   "risevision.widget.common.financial",
   "risevision.widget.common.tooltip",
