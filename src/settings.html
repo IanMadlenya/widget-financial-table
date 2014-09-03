@@ -91,22 +91,22 @@
 		        <div class="btn-toolbar sticky-buttons">
 		          <button id="save" class="btn btn-success btn-fixed-width" type="button"
 								ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
-		            <span>{{'common.buttons.save' | translate}}</span>
+		            <span>{{'buttons.save' | translate}}</span>
 		            <i class="fa fa-white fa-check icon-right"></i>
 		          </button>
 		          <button id="cancel" class="btn btn-primary" type="button"
 								ng-click="closeSettings();">
-		            <span>{{'common.buttons.cancel' | translate}}</span>
+		            <span>{{'buttons.cancel' | translate}}</span>
 		            <i class="fa fa-white fa-times icon-right"></i>
 		          </button>
 		          <button id="help" class="btn btn-fixed-width btn-rv-help" type="button">
-		            <span>{{'common.buttons.help' | translate}}</span>
+		            <span>{{'buttons.help' | translate}}</span>
 		            <i class="fa fa-question-circle icon-right"></i>
 		          </button>
-						  <a type="button" class="btn btn-link btn-github" type="button" title="View on Github"
-							href="https://github.com/Rise-Vision/widget-financial-table" target="_blank">
-						    <i class="fa fa-github"></i>
-						  </a>
+							<a type="button" class="btn btn-rv-help btn-fixed-width" href="https://github.com/Rise-Vision/widget-financial-table" target="_blank">
+							  <span>{{'buttons.github' | translate}}</span>
+								<i class="fa fa-github fa-lg"></i>
+							</a>
 		        </div>
 		      </div>
 		    </div>
@@ -177,30 +177,7 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="//s3.amazonaws.com/rise-common/scripts/i18next/i18next.min.js"></script>
-	<script src="//s3.amazonaws.com/rise-common/scripts/sticky/jquery.sticky.min.js"></script>
-	<script src="//s3.amazonaws.com/Common-Production/Common/RiseVision.Common.min.js"></script>
 
-	<script src="//datejs.googlecode.com/svn/trunk/build/date.js"></script>
-
-  <script type="text/javascript" src="../FinancialTable.min.js"></script>
-
-  <script type="text/javascript">
-	var prefs = new gadgets.Prefs(),
-    financial = null;
-
-	$(document).ready(function() {
-	    financial = new RiseVision.FinancialSettings();
-
-	    gadgets.rpc.register("rscmd_getSettings", financial.getSettings);
-	    gadgets.rpc.register("rscmd_financialSelectorCallback", financial.setStocks);
-	    gadgets.rpc.register("rscmd_colorPickerCallback", financial.setColor);
-	    gadgets.rpc.register("rscmd_fontSelectorCallback", financial.setFont);
-
-	    financial.initSettings();
-	});
-
-  </script>
 </body>
 </html>
