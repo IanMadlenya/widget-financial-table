@@ -86,8 +86,8 @@
 		        </button>
 		      </h1>
 					<div id="subscription-status" subscription-status
-					product-id="{{PRODUCT_ID}}" product-code="{{PRODUCT_CODE}}" company-id="{{companyId}}
-					"ng-model="subscribed"></div>
+					product-id="{{PRODUCT_ID}}" product-code="{{PRODUCT_CODE}}" company-id="{{settings.params.companyId}}"
+					ng-model="subscribed"></div>
 		      <div class="sticky-wrapper">
 		        <div class="btn-toolbar sticky-buttons">
 		          <button id="save" class="btn btn-success btn-fixed-width" type="button"
@@ -100,10 +100,10 @@
 		            <span>{{'buttons.cancel' | translate}}</span>
 		            <i class="fa fa-white fa-times icon-right"></i>
 		          </button>
-		          <button id="help" class="btn btn-fixed-width btn-rv-help" type="button">
+		          <a type="button" class="btn btn-fixed-width btn-rv-help" href="http://www.risevision.com/?page_id=25117" target="_blank">
 		            <span>{{'buttons.help' | translate}}</span>
 		            <i class="fa fa-question-circle icon-right"></i>
-		          </button>
+		          </a>
 							<a type="button" class="btn btn-rv-help btn-fixed-width" href="https://github.com/Rise-Vision/widget-financial-table" target="_blank">
 							  <span>{{'buttons.github' | translate}}</span>
 								<i class="fa fa-github fa-lg"></i>
