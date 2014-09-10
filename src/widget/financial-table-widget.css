@@ -1,0 +1,83 @@
+* {
+/* Important: This is necessary to minimize column misalignment between the headings and the data. */
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+      body {
+background-color: transparent;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+}
+table {
+border-collapse: collapse;
+}
+tbody tr {
+white-space: nowrap;
+}
+
+#container {
+width: 100%;
+height: 95%;
+}
+#container.fullScreen {
+height: 100%;
+}
+
+.error {
+padding: 1em;
+font-size: 20px;
+color: red;
+}
+
+/* Row Colors */
+.even {
+background-color: __UP_rowColor__;
+}
+.odd {
+background-color: __UP_altRowColor__;
+}
+.selected {
+background-color: __UP_selRowColor__;
+}
+
+/* Conditions */
+#financial.default .changeUpIncrease,
+#financial.default .changeDownDecrease,
+#financial.default .valuePositivePositive,
+#financial.default .valueNegativeNegative {
+color: green !important;
+}
+#financial.default .changeUpDecrease,
+#financial.default .changeDownIncrease,
+#financial.default .valuePositiveNegative,
+#financial.default .valueNegativePositive {
+color: red !important;
+}
+
+/* Logos and arrows */
+#financial.default .logo img, .arrow {
+vertical-align: top;
+}
+
+/* Disclaimer */
+#disclaimer.default {
+padding: 0.5em;
+font-style: italic;
+font-size: 10px;
+}
+#disclaimer.default.top {
+position: relative;	/* To have rows scroll underneath the disclaimer. */
+}
+#disclaimer.default.top.right {
+text-align: right;
+}
+#disclaimer.default.bottom {
+position: absolute;
+bottom: 0;
+}
+#disclaimer.default.bottom.right {
+right: 0;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Financial Table Widget</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <!-- build:css css/widget.min.css -->
+  <link rel="stylesheet" href="components/rv-data-tables/media/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="widget/financial-table-widget.css">
+  <!-- endbuild -->
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  
+  <!-- build:js js/widget.min.js -->
+  <script type="text/javascript" src="components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="components/rv-data-tables/media/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="widget/common/common.js"></script>
+  <script type="text/javascript" src="widget/common/financial.js"></script>
+  <script type="text/javascript" src="widget/financial-table-widget.js"></script>
+  <!-- endbuild -->
+
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="http://datejs.googlecode.com/svn/trunk/build/date.js"></script>
+  <script src="//rvashow2.appspot.com/gadgets/gadgets.min.js"></script>
+
+  <script type="text/javascript" src="https://s3.amazonaws.com/Common-Production/InfiniteScroll/InfiniteScroll.min.js"></script>
+  
+  <script>
+    //Add Analytics code.
+    var _gaq = _gaq || [];
+
+    _gaq.push(["_setAccount", "UA-41395348-1"]);
+    _gaq.push(["_trackPageview"]);
+
+    (function() {
+      var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+      ga.src = ("https:" === document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+      var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    
+    //Issue 1053 - Disable right-click.
+    window.oncontextmenu = function() {
+      return false;
+    };
+  </script>
+</body>
+</html>

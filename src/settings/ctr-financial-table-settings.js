@@ -4,7 +4,6 @@ angular.module("risevision.widget.financialTable.settings")
 
       $scope.PRODUCT_CODE = PRODUCT_CODE;
       $scope.PRODUCT_ID = PRODUCT_ID;
-      $scope.companyId = "f114ad26-949d-44b4-87e9-8528afc76ce4";
 
       $scope.financialColumns = [
         {
