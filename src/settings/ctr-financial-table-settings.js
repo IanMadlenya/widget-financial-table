@@ -8,71 +8,88 @@ angular.module("risevision.widget.financialTable.settings")
 
       $scope.financialColumns = [
         {
-          name: "instrument",
+          id: "instrument",
+          name: "columns.instrument",
           type: "text"
         },
         {
-          name: "instrument-logo",
+          id: "instrument-logo",
+          name: "columns.instrument-logo",
           type: "text"
         },
         {
-          name: "instrument-name",
+          id: "instrument-name",
+          name: "columns.instrument-name",
           type: "text"
         },
         {
-          name: "last-price",
+          id: "last-price",
+          name: "columns.last-price",
           type: "int"
         },
         {
-          name: "previous-close",
+          id: "previous-close",
+          name: "columns.previous-close",
           type: "int"
         },
         {
-          name: "change",
+          id: "change",
+          name: "columns.change",
           type: "int"
         },
         {
-          name: "percent-change",
+          id: "percent-change",
+          name: "columns.percent-change",
           type: "int"
         },
         {
-          name: "accumulated-volume",
+          id: "accumulated-volume",
+          name: "columns.accumulated-volume",
           type: "int"
         },
         {
-          name: "day-high",
+          id: "day-high",
+          name: "columns.day-high",
           type: "int"
         },
         {
-          name: "day-low",
+          id: "day-low",
+          name: "columns.day-low",
           type: "int"
         },
         {
-          name: "52-week-high",
+          id: "52-week-high",
+          name: "columns.52-week-high",
           type: "int"
         },
         {
-          name: "52-week-low",
+          id: "52-week-low",
+          name: "columns.52-week-low",
           type: "int"
         },
         {
-          name: "bid",
+          id: "bid",
+          name: "columns.bid",
           type: "int"
         },
         {
-          name: "ask",
+          id: "ask",
+          name: "columns.ask",
           type: "int"
         },
         {
-          name: "yield",
+          id: "yield",
+          name: "columns.yield",
           type: "int"
         },
         {
-          name: "yield-change",
+          id: "yield-change",
+          name: "columns.yield-change",
           type: "int"
         },
         {
-          name: "trade-time",
+          id: "trade-time",
+          name: "columns.trade-time",
           type: "text"
         }
       ];
@@ -121,10 +138,10 @@ angular.module("risevision.widget.financialTable.settings")
       },
       columns: [
         {
-          name: "instrument",
+          id: "instrument",
         },
         {
-          name: "instrument-logo"
+          id: "instrument-logo"
         }
       ],
       disclaimer: {
