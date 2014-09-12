@@ -89,22 +89,26 @@
         "colPadding":"0"
       },
       "columns": [{
-          "name":"instrument",
+          "id":"instrument",
           "type":"text",
+          "name":"columns.instrument",
           "alignment":"left",
           "width":"100",
           "decimals":0,
           "sign":"arrow",
-          "colorCondition":"none"
+          "colorCondition":"none",
+          "date":"medium"
         },
         {
-          "name":"instrument-logo",
+          "id":"instrument-logo",
           "type":"text",
+          "name":"columns.instrument-logo",
           "alignment":"left",
           "width":"100",
           "decimals":0,
           "sign":"arrow",
-          "colorCondition":"none"
+          "colorCondition":"none",
+          "date":"medium"
         }
       ],
       "disclaimer": {
@@ -191,12 +195,11 @@
             + encodeURIComponent(JSON.stringify(settings.params.background));
 
       element(by.id("save")).click();
-
-      expect(browser.executeScript('return window.result')).to.eventually.deep.equal(
-        {
-          'additionalParams': JSON.stringify(settings.additionalParams),
-          'params': paramsString
-        });
+      
+      browser.executeScript("return window.result").then(function (result) {
+        expect(result.params).to.equal.paramsString;
+        expect(result.additionalParams).to.equal(JSON.stringify(settings.additionalParams));
+      });
     });
   });
 })();
