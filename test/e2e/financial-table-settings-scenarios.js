@@ -15,8 +15,10 @@
   var COLUMN_COUNT = 18;
 
   var settings = {
-    params: {
-      instruments: [
+    "params": {
+    },
+    "additionalParams": {
+      "instruments": [
         "AA.N",
         "AXP.N",
         "BA.N",
@@ -48,11 +50,6 @@
         "WMT.N",
         "XOM.N"
       ],
-      background: {
-        color: "transparent"
-      }
-    },
-    additionalParams: {
       "scroll": {
         "by":"none",
         "speed":"medium",
@@ -126,6 +123,9 @@
           "color":"black",
           "highlightColor":"transparent"
         }
+      },
+      "background": {
+        "color": "transparent"
       }
     }
   };
