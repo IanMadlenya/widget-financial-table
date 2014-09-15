@@ -96,6 +96,8 @@ angular.module("risevision.widget.financialTable.settings")
   }])
   .value("defaultSettings", {
     params: {
+    },
+    additionalParams: {
       instruments: [
         "AA.N",
         "AXP.N",
@@ -128,9 +130,6 @@ angular.module("risevision.widget.financialTable.settings")
         "WMT.N",
         "XOM.N"
       ],
-      background: {}
-    },
-    additionalParams: {
       scroll: {
       },
       table: {
@@ -149,6 +148,7 @@ angular.module("risevision.widget.financialTable.settings")
           italic: true,
           align: "right"
         }
-      }
+      },
+      background: {}
     }
   });

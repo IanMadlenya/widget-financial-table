@@ -117,7 +117,7 @@
 						<div class="col-md-12">
 							<div ng-class="{'form-group':true, 'has-error':settingsform.instruments.$invalid}">
 								<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
-								<div name="instruments" financial-selector instruments="settings.params.instruments"
+								<div name="instruments" financial-selector instruments="settings.additionalParams.instruments"
 									ng-model="financialselector" required></div>
 								<p class="text-danger" ng-show="settingsform.instruments.$error.required">
 									{{'instruments.error.required' | translate}}
@@ -151,7 +151,7 @@
 							</div>
 						</div>
 					</div>
-					<background-setting background="settings.params.background"></background-setting>
+					<background-setting background="settings.additionalParams.background"></background-setting>
 					<!--
 					<div class="row">
 						<div class="col-md-12">
