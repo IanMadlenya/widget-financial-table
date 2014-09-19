@@ -1,11 +1,4 @@
 {
-	"buttons" : {
-		"save": "Save",
-		"apply": "Apply",
-		"cancel": "Cancel",
-		"help": "Help",
-		"github": "Contribute"
-	},
 	"settings": "Financial Table Settings",
 	"instruments": {
 		"label": "Instruments",
