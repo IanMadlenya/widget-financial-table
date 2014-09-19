@@ -12,57 +12,57 @@ angular.module("risevision.widget.financialTable.settings")
           type: "text"
         },
         {
-          id: "instrument-logo",
+          id: "logo",
           name: "columns.instrument-logo",
           type: "text"
         },
         {
-          id: "instrument-name",
+          id: "name",
           name: "columns.instrument-name",
           type: "text"
         },
         {
-          id: "last-price",
+          id: "lastPrice",
           name: "columns.last-price",
           type: "int"
         },
         {
-          id: "previous-close",
+          id: "historicClose",
           name: "columns.previous-close",
           type: "int"
         },
         {
-          id: "change",
+          id: "netChange",
           name: "columns.change",
           type: "int"
         },
         {
-          id: "percent-change",
+          id: "percentChange",
           name: "columns.percent-change",
           type: "int"
         },
         {
-          id: "accumulated-volume",
+          id: "accumulatedVolume",
           name: "columns.accumulated-volume",
           type: "int"
         },
         {
-          id: "day-high",
+          id: "dayHigh",
           name: "columns.day-high",
           type: "int"
         },
         {
-          id: "day-low",
+          id: "dayLow",
           name: "columns.day-low",
           type: "int"
         },
         {
-          id: "52-week-high",
+          id: "yearHigh",
           name: "columns.52-week-high",
           type: "int"
         },
         {
-          id: "52-week-low",
+          id: "yearLow",
           name: "columns.52-week-low",
           type: "int"
         },
@@ -82,12 +82,12 @@ angular.module("risevision.widget.financialTable.settings")
           type: "int"
         },
         {
-          id: "yield-change",
+          id: "yieldChange",
           name: "columns.yield-change",
           type: "int"
         },
         {
-          id: "trade-time",
+          id: "tradeTime",
           name: "columns.trade-time",
           type: "text"
         }
@@ -139,7 +139,7 @@ angular.module("risevision.widget.financialTable.settings")
           id: "instrument",
         },
         {
-          id: "instrument-logo"
+          id: "logo"
         }
       ],
       disclaimer: {

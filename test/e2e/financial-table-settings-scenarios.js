@@ -97,7 +97,7 @@
           "date":"medium"
         },
         {
-          "id":"instrument-logo",
+          "id":"logo",
           "type":"text",
           "name":"columns.instrument-logo",
           "alignment":"left",

@@ -7,6 +7,7 @@
     "jquery": "1.11.0",
     "underscore": "1.6.0",
     "common-style": "https://github.com/Rise-Vision/common-style.git",
+    "widget-common": "https://github.com/Rise-Vision/widget-common.git",
     "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git",
     "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git",
     "component-financial-selector": "https://github.com/Rise-Vision/component-financial-selector.git",
