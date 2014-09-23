@@ -4,12 +4,14 @@
 -moz-box-sizing: border-box;
 box-sizing: border-box;
 }
-      body {
+body {
 background-color: transparent;
 user-select: none;
 -moz-user-select: none;
 -webkit-user-select: none;
 -khtml-user-select: none;
+margin: 0px;
+padding: 0px;
 }
 table {
 border-collapse: collapse;
@@ -30,17 +32,6 @@ height: 100%;
 padding: 1em;
 font-size: 20px;
 color: red;
-}
-
-/* Row Colors */
-.even {
-background-color: __UP_rowColor__;
-}
-.odd {
-background-color: __UP_altRowColor__;
-}
-.selected {
-background-color: __UP_selRowColor__;
 }
 
 /* Conditions */
@@ -65,8 +56,6 @@ vertical-align: top;
 /* Disclaimer */
 #disclaimer.default {
 padding: 0.5em;
-font-style: italic;
-font-size: 10px;
 }
 #disclaimer.default.top {
 position: relative;	/* To have rows scroll underneath the disclaimer. */

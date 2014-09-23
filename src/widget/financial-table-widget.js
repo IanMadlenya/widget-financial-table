@@ -61,6 +61,7 @@ RiseVision.Financial = function() {
     DIRECTION: "down",
     RESUMES: 5
   };
+  this.disclaimerLoc = "bottomRight";
   
   this.displayID = "";
   
@@ -90,7 +91,10 @@ RiseVision.Financial = function() {
   function getTextNode(font, name) {
     return document.createTextNode("." + name + "{" +
     "font-family: " + font.font.family + ";" +
-    "font-size: " + font.size + "px" +
+    "font-size: " + font.size + "px" + ";" +
+    "font-weight: " + (font.bold ? "bold" : "normal") + ";" +
+    "font-style: " + (font.italic ? "italic" : "normal") + ";" +
+    "text-decoration: " + (font.underline ? "underline" : "none") + ";" +
     "}");
   }
   
@@ -101,6 +105,10 @@ RiseVision.Financial = function() {
       //Inject CSS font styles into the DOM.
       styleNode.appendChild(getTextNode(this.additionalParams.table.colHeaderFont, "heading_font-style"));
       styleNode.appendChild(getTextNode(this.additionalParams.table.dataFont, "data_font-style"));
+      styleNode.appendChild(getTextNode(this.additionalParams.disclaimer.font, "disclaimer_font-style"));
+      styleNode.appendChild(document.createTextNode(".dataTable .even{background-color:" + this.additionalParams.table.rowColor + ";}"));
+      styleNode.appendChild(document.createTextNode(".dataTable .odd{background-color:" + this.additionalParams.table.altRowColor + ";}"));
+      // styleNode.appendChild(document.createTextNode(".selected{background-color:" + this.additionalParams.table.selectedColor + ";}"));
       document.getElementsByTagName("head")[0].appendChild(styleNode);
     }
   }
@@ -177,10 +185,6 @@ RiseVision.Financial.prototype.setParams = function(name, value) {
     financial.appendStyle();
     
     //Gadget settings
-    // financial.rowPadding = prefs.getInt("rowPadding") / 2 + "px";
-    // financial.colPadding = prefs.getInt("colPadding") / 2 + "px";
-    // financial.disclaimerFont = prefs.getString("disclaimerFont");
-    // financial.disclaimerLoc = prefs.getString("disclaimerLoc"); 
     // financial.useDefault = prefs.getBool("useDefault");
 
     // Use fixed layout
@@ -450,7 +454,8 @@ RiseVision.Financial.prototype.initTable = function() {
 
     //Configure disclaimer.
     $("#disclaimer").text("Market Data by Thomson Reuters - Delayed 20 Minutes");
-    $("#disclaimer").css("font-family", this.disclaimerFont);
+    $("#disclaimer").addClass("disclaimer_font-style");
+    $("#disclaimer").addClass("default");
 
     if ((this.disclaimerLoc === "bottomRight") || (this.disclaimerLoc === "bottomLeft")) {	
       $("#disclaimer").addClass("bottom");
@@ -538,7 +543,7 @@ RiseVision.Financial.prototype.initTable = function() {
   if (this.isLoading || this.isChain()) {
     $(".dataTables_scrollBody").infiniteScroll({
       scrollBy: self.additionalParams.scroll.by,
-      direction: self.SCROLL.DIRECTION,
+      direction: (self.additionalParams.scroll.by === "none" ? self.additionalParams.scroll.by : self.SCROLL.DIRECTION),
       duration: self.additionalParams.scroll.pause * 1000,
       speed: self.additionalParams.scroll.speed,
       swipingTimeout: self.SCROLL.RESUMES * 1000,
