@@ -82,30 +82,19 @@
         },
         "rowColor":"transparent",
         "altRowColor":"transparent",
-        "rowPadding":"0",
-        "colPadding":"0"
+        "rowPadding":"0"
       },
       "columns": [{
           "id":"instrument",
           "type":"text",
           "name":"columns.instrument",
-          "alignment":"left",
-          "width":"100",
-          "decimals":0,
-          "sign":"arrow",
-          "colorCondition":"none",
-          "date":"medium"
+          "width":"100"
         },
         {
           "id":"logo",
           "type":"text",
           "name":"columns.instrument-logo",
-          "alignment":"left",
-          "width":"100",
-          "decimals":0,
-          "sign":"arrow",
-          "colorCondition":"none",
-          "date":"medium"
+          "width":"100"
         }
       ],
       "disclaimer": {
