@@ -46,7 +46,7 @@ $(document).ready(function() {
     gadgets.rpc.register("rscmd_stop_" + id, stop);
     gadgets.rpc.register("rsparam_set_" + id, financial.setParams);
     // requesting all params at once
-    gadgets.rpc.call("", "rsparam_get", null, id, ["displayId", "additionalParams"]);
+    gadgets.rpc.call("", "rsparam_get", null, id, ["additionalParams", "displayId", "companyId"]);
   }
 });
 
@@ -63,7 +63,9 @@ RiseVision.Financial = function() {
   };
   this.disclaimerLoc = "bottomRight";
   
-  this.displayID = "";
+  this.displayId = "";
+  this.companyId = "";
+  this.isAuthorized = true;
   
   // instance variable Financial (RiseVision.Common.Financial.RealTime)
   this.financial = null;
@@ -149,7 +151,7 @@ RiseVision.Financial.prototype.checkInstruments = function(includeAll) {
   }
   
   if (unrequested.length > 0) {
-    gadgets.rpc.call("", "instrumentsChanged", null, this.displayID, unrequested);
+    gadgets.rpc.call("", "instrumentsChanged", null, this.displayId, unrequested);
   }
     
   if (includeAll) {
@@ -161,20 +163,10 @@ RiseVision.Financial.prototype.checkInstruments = function(includeAll) {
 };
 
 RiseVision.Financial.prototype.setParams = function(name, value) {
-  // if (!prefs.getBool("acceptance")) {
-  //   $("#container").text("You must check the Acceptance setting in order to use this Gadget.");
-  //   $("#container").addClass("error");
-  //   readyEvent();
-  // }
-  
-  if (name[0] && name[0] === "" && value[0]) {
-    financial.displayID = value[0];
-  }
-  
-  if (name[1] && name[1] === "additionalParams" && value[1]) {
+  if (name[0] && name[0] === "additionalParams" && value[0]) {
   	var currentIndex = 0;
       
-    financial.additionalParams = JSON.parse(value[1]);
+    financial.additionalParams = JSON.parse(value[0]);
     
     var bgColor = financial.additionalParams.background.color;
 
@@ -223,6 +215,14 @@ RiseVision.Financial.prototype.setParams = function(name, value) {
     });
   }
   
+  if (name[1] && name[1] === "displayId") {
+    financial.displayId = value[1];
+  }
+  
+  if (name[2] && name[2] === "companyId") {
+    financial.companyId = value[2];
+  }
+  
   financial.init();
 };
 
@@ -230,10 +230,11 @@ RiseVision.Financial.prototype.init = function() {
   var self = this,
     params = {};
 	
-  this.financial = new RiseVision.Common.Financial.RealTime(this.displayID, this.additionalParams.instruments);
+  this.financial = new RiseVision.Common.Financial.RealTime(this.displayId, this.additionalParams.instruments);
     
   if (this.useDefault) {
     this.getData();
+    this.authorize();
   }
   else {
     //Load custom layout.
@@ -257,47 +258,74 @@ RiseVision.Financial.prototype.init = function() {
         }
 
         self.layout = data.getElementsByTagName("Layout")[0].childNodes[1].nodeValue;
+        
         self.getData();
+        self.authorize();
       }, params);
     }
+  }
+};
+
+RiseVision.Financial.prototype.authorize = function() {
+  var self = this;
+  var productCode = FINANCIAL_TABLE_CONFIG.PRODUCT_CODE;
+  var auth = new RiseVision.Common.Store.Auth();
+  
+  if (this.displayId) {
+    auth.checkForDisplay(this.displayId, productCode, function(authorized) {
+        self.isAuthorized = authorized;
+    });
+  }
+  else if (this.companyId) {
+    auth.checkForCompany(this.companyId, productCode, function(authorized) {
+      self.isAuthorized = authorized;
+    });
+  }
+  else {
+    self.isAuthorized = false;
   }
 };
 
 RiseVision.Financial.prototype.getData = function() {
   var self = this;
 
-  this.financial.getData(this.requestedFields, this.hasLogos, this.isChain(), function(data, urls) {
-    if (data) {
-      self.data = data;
-      self.urls = urls;
-      self.arrowCount = 0;
-      
-      //Temporarily size the Gadget using the UserPrefs. Workaround for multi-page Presentation issue.
-      $("#container").width(prefs.getString("rsW"));
-      $("#container").height(prefs.getString("rsH"));
-      
-      if (self.isLoading) {
-        self.loadArrow(self.logosURL + "animated-green-arrow.gif");
-        self.loadArrow(self.logosURL + "animated-red-arrow.gif");
-      }
-      else {
-        //Only chains could potentially contain different instruments.
-        if (self.isChain()) {
-            self.checkInstruments(false);
-        }
-
-        if (self.layoutURL) {
-            self.showCustomLayout();
+  if (this.isAuthorized) {
+    this.financial.getData(this.requestedFields, this.hasLogos, this.isChain(), function(data, urls) {
+      if (data) {
+        self.data = data;
+        self.urls = urls;
+        self.arrowCount = 0;
+        
+        //Temporarily size the Gadget using the UserPrefs. Workaround for multi-page Presentation issue.
+        $("#container").width(prefs.getString("rsW"));
+        $("#container").height(prefs.getString("rsH"));
+        
+        if (self.isLoading) {
+          self.loadArrow(self.logosURL + "animated-green-arrow.gif");
+          self.loadArrow(self.logosURL + "animated-red-arrow.gif");
         }
         else {
-            self.showDefaultLayout();
+          //Only chains could potentially contain different instruments.
+          if (self.isChain()) {
+              self.checkInstruments(false);
+          }
+
+          if (self.layoutURL) {
+              self.showCustomLayout();
+          }
+          else {
+              self.showDefaultLayout();
+          }
         }
       }
-    }
-    else {
-      self.startTimer();
-    }
-  });
+      else {
+        self.startTimer();
+      }
+    });
+  }
+  else {
+    this.startTimer();
+  }
 };
 
 RiseVision.Financial.prototype.loadArrow = function(url) {
