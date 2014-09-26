@@ -4,7 +4,6 @@
   "dependencies": {
     "angular": "1.2.18",
     "angular-route": "1.2.18",
-    "jquery": "1.11.0",
     "underscore": "1.6.0",
     "common-style": "https://github.com/Rise-Vision/common-style.git",
     "widget-common": "https://github.com/Rise-Vision/widget-common.git",

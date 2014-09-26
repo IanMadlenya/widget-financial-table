@@ -14,6 +14,7 @@
   var jshint = require("gulp-jshint");
   var jsoncombine = require("gulp-jsoncombine");
   var minifyCSS = require("gulp-minify-css");
+  var sourcemaps = require("gulp-sourcemaps");
   var usemin = require("gulp-usemin");
   var uglify = require("gulp-uglify");
   var runSequence = require('run-sequence');
@@ -59,19 +60,10 @@
   gulp.task("html", ["lint"], function () {
     return gulp.src(['./src/*.html'])
     .pipe(usemin({
-      js: [uglify({
-        mangle:true,
-        outSourceMap: false // source map generation doesn't seem to function correctly
-      })]
+      css: [sourcemaps.init(), minifyCSS(), sourcemaps.write()],
+      js: [sourcemaps.init(), uglify(), sourcemaps.write()]
     }))
     .pipe(gulp.dest("dist/"));
-  });
-
-  gulp.task("css", function () {
-    return gulp.src(cssFiles)
-      .pipe(minifyCSS({keepBreaks:true}))
-      .pipe(concat("all.min.css"))
-      .pipe(gulp.dest("dist/css"));
   });
 
   gulp.task("fonts", function() {
@@ -127,7 +119,7 @@
 
 
   gulp.task('build', function (cb) {
-      runSequence(["clean", "config"], ["html", "css", "fonts", "images", "i18n"], cb);
+      runSequence(["clean", "config"], ["html", "fonts", "images", "i18n"], cb);
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());

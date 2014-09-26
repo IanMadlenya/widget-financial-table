@@ -37,6 +37,7 @@
     "gulp-map": "0.0.2",
     "gulp-minify-css": "~0.3.0",
     "gulp-rename": "~1.2.0",
+    "gulp-sourcemaps": "^1.2.2",
     "gulp-uglify": "~0.2.1",
     "gulp-usemin": "0.3.7",
     "gulp-util": "^2.2.17",
