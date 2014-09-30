@@ -88,13 +88,13 @@
           "id":"instrument",
           "type":"text",
           "name":"columns.instrument",
-          "width":"100"
+          "width":100
         },
         {
           "id":"logo",
           "type":"text",
           "name":"columns.instrument-logo",
-          "width":"100"
+          "width":100
         }
       ],
       "disclaimer": {
