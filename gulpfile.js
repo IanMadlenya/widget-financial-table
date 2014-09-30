@@ -58,7 +58,7 @@
   });
 
   gulp.task("html", ["lint"], function () {
-    return gulp.src(['./src/*.html'])
+    return gulp.src(['./src/settings.html', './src/widget.html'])
     .pipe(usemin({
       css: [sourcemaps.init(), minifyCSS(), sourcemaps.write()],
       js: [sourcemaps.init(), uglify(), sourcemaps.write()]
