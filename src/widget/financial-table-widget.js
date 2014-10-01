@@ -413,7 +413,8 @@ RiseVision.Financial.prototype.initTable = function() {
   //by the Data Server depending on collection times (e.g. one stock within collection time, another not).
   if (this.isLoading || this.isChain()) {
   	if (!this.isLoading) {
-	    $(".dataTables_scrollBody").infiniteScroll.stop();
+	    // $(".dataTables_scrollBody").infiniteScroll.stop();
+      $(".dataTables_scrollBody").data("plugin_autoScroll").stop();
   	}
 	
   	//Add table headings.
@@ -569,17 +570,25 @@ RiseVision.Financial.prototype.initTable = function() {
     
   //Initialize scrolling after conditions so that when scrolling by page, the cloned items will show the conditions as well.
   if (this.isLoading || this.isChain()) {
-    $(".dataTables_scrollBody").infiniteScroll({
-      scrollBy: self.additionalParams.scroll.by,
-      direction: (self.additionalParams.scroll.by === "none" ? self.additionalParams.scroll.by : self.SCROLL.DIRECTION),
-      duration: self.additionalParams.scroll.pause * 1000,
-      speed: self.additionalParams.scroll.speed,
-      swipingTimeout: self.SCROLL.RESUMES * 1000,
-      toggleOddEven: true
+    $(".dataTables_scrollBody").autoScroll({
+            scrollBy: self.additionalParams.scroll.by,
+            scrollSpeed: self.additionalParams.scroll.speed,
+            scrollResumes: self.additionalParams.scroll.pause
     })
-    .bind("onLastItemScrolled", function(event) {
-      self.onLastItemScrolled.call(self, event);
+    .on("done", function() {
+            doneEvent();
     });
+    // $(".dataTables_scrollBody").infiniteScroll({
+    //   scrollBy: self.additionalParams.scroll.by,
+    //   direction: (self.additionalParams.scroll.by === "none" ? self.additionalParams.scroll.by : self.SCROLL.DIRECTION),
+    //   duration: self.additionalParams.scroll.pause * 1000,
+    //   speed: self.additionalParams.scroll.speed,
+    //   swipingTimeout: self.SCROLL.RESUMES * 1000,
+    //   toggleOddEven: true
+    // })
+    // .bind("onLastItemScrolled", function(event) {
+    //   self.onLastItemScrolled.call(self, event);
+    // });
   }
 
   //Size container back to its original dimensions.
@@ -593,7 +602,8 @@ RiseVision.Financial.prototype.initTable = function() {
     this.checkInstruments(true);
   }
   else {
-    $(".dataTables_scrollBody").infiniteScroll.start();
+    $(".dataTables_scrollBody").data("plugin_autoScroll").play();
+    // $(".dataTables_scrollBody").infiniteScroll.start();
   }
     
   this.startTimer();
@@ -896,7 +906,8 @@ RiseVision.Financial.prototype.startTimer = function() {
 
   setTimeout(function() {
     //If we"re not scrolling, or there is not enough content to scroll, check for updates right away.
-    if ((self.additionalParams.scroll.by === "none") || (!$(".dataTables_scrollBody").infiniteScroll.canScroll())) {
+    // if ((self.additionalParams.scroll.by === "none") || (!$(".dataTables_scrollBody").infiniteScroll.canScroll())) {
+    if ((self.additionalParams.scroll.by === "none") || (!$(".dataTables_scrollBody").data("plugin_autoScroll").canScroll())) {
       self.getData();
     }
     else {
@@ -918,9 +929,11 @@ RiseVision.Financial.prototype.isChain = function() {
 };
 
 RiseVision.Financial.prototype.play = function() {
-  $(".dataTables_scrollBody").infiniteScroll.start();   
+  // $(".dataTables_scrollBody").infiniteScroll.start(); 
+  $(".dataTables_scrollBody").data("plugin_autoScroll").play();  
 };
 
 RiseVision.Financial.prototype.pause = function() {
-  $(".dataTables_scrollBody").infiniteScroll.pause();	
+  // $(".dataTables_scrollBody").infiniteScroll.pause();	
+  $(".dataTables_scrollBody").data("plugin_autoScroll").pause();
 };
