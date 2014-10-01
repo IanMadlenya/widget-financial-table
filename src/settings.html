@@ -37,28 +37,12 @@
 					<div id="subscription-status" subscription-status
 					product-id="{{PRODUCT_ID}}" product-code="{{PRODUCT_CODE}}" company-id="{{settings.params.companyId}}"
 					ng-model="subscribed"></div>
-		      <div class="sticky-wrapper">
-		        <div class="btn-toolbar sticky-buttons">
-		          <button id="save" class="btn btn-success btn-fixed-width" type="button"
-								ng-click="saveSettings();" ng-disabled="settingsform.$invalid">
-		            <span>{{'common.buttons.save' | translate}}</span>
-		            <i class="fa fa-white fa-check icon-right"></i>
-		          </button>
-		          <button id="cancel" class="btn btn-primary" type="button"
-								ng-click="closeSettings();">
-		            <span>{{'common.buttons.cancel' | translate}}</span>
-		            <i class="fa fa-white fa-times icon-right"></i>
-		          </button>
-		          <a type="button" class="btn btn-fixed-width btn-rv-help" href="http://www.risevision.com/?page_id=25117" target="_blank">
-		            <span>{{'common.buttons.help' | translate}}</span>
-		            <i class="fa fa-question-circle icon-right"></i>
-		          </a>
-							<a type="button" class="btn btn-rv-help btn-fixed-width" href="https://github.com/Rise-Vision/widget-financial-table" target="_blank">
-							  <span>{{'common.buttons.contribute' | translate}}</span>
-								<i class="fa fa-github fa-lg"></i>
-							</a>
-		        </div>
-		      </div>
+					<div class="sticky-wrapper">
+            <widget-button-toolbar
+              save="saveSettings()" cancel="closeSettings()" disable-save="settingsForm.$invalid"
+              help="http://www.risevision.com/?page_id=25117"
+              contribute="https://github.com/Rise-Vision/widget-financial-table"></widget-button-toolbar>
+          </div>
 		    </div>
 		    <div id="settings-alert" class="alert alert-danger" ng-show="onError"></div>
 				<form role="form" name="settingsform">
@@ -141,6 +125,8 @@
 	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>
 	<script src="settings/ctr-financial-table-settings.js"></script>
 
+  <script src="components/widget-settings-ui-components/dist/js/angular/widget-button-toolbar.js"></script>
+	
 	<script src="components/widget-settings-ui-components/dist/js/alignment.js"></script>
 	<script src="components/widget-settings-ui-components/dist/js/angular/alignment.js"></script>
 
