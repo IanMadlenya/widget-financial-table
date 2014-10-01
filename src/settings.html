@@ -45,14 +45,14 @@
           </div>
 		    </div>
 		    <div id="settings-alert" class="alert alert-danger" ng-show="onError"></div>
-				<form role="form" name="settingsform">
+				<form role="form" name="settingsForm">
 					<div class="row">
 						<div class="col-md-12">
-							<div ng-class="{'form-group':true, 'has-error':settingsform.instruments.$invalid}">
+							<div ng-class="{'form-group':true, 'has-error':settingsForm.instruments.$invalid}">
 								<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
 								<div name="instruments" financial-selector instruments="settings.additionalParams.instruments"
 									ng-model="financialselector" required></div>
-								<p class="text-danger" ng-show="settingsform.instruments.$error.required">
+								<p class="text-danger" ng-show="settingsForm.instruments.$error.required">
 									{{'instruments.error.required' | translate}}
 								</p>
 							</div>
@@ -60,10 +60,10 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<div ng-class="{'form-group':true, 'has-error':settingsform.columns.$invalid}">
+							<div ng-class="{'form-group':true, 'has-error':settingsForm.columns.$invalid}">
 								<column-selector name="columns"	columns="settings.additionalParams.columns" column-names="financialColumns"
 									ng-model="columnselector" required></column-selector>
-								<p class="text-danger" ng-show="settingsform.columns.$error.required">
+								<p class="text-danger" ng-show="settingsForm.columns.$error.required">
 									{{'columns.error.required' | translate}}
 								</p>
 							</div>
