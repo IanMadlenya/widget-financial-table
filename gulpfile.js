@@ -8,12 +8,12 @@
   var fs = require("fs");
   var es = require("event-stream");
   var gutil = require('gulp-util');
-  var clean = require("gulp-clean");
   var concat = require("gulp-concat");
   var bump = require('gulp-bump');
   var jshint = require("gulp-jshint");
   var jsoncombine = require("gulp-jsoncombine");
   var minifyCSS = require("gulp-minify-css");
+  var rimraf = require("gulp-rimraf");
   var sourcemaps = require("gulp-sourcemaps");
   var usemin = require("gulp-usemin");
   var uglify = require("gulp-uglify");
@@ -38,7 +38,7 @@
 
   gulp.task("clean", function() {
     return gulp.src("dist")
-      .pipe(clean({force: true}));
+      .pipe(rimraf({force: true}));
   });
 
   gulp.task('config', function() {
