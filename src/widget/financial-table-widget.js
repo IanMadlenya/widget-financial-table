@@ -570,11 +570,7 @@ RiseVision.Financial.prototype.initTable = function() {
     
   //Initialize scrolling after conditions so that when scrolling by page, the cloned items will show the conditions as well.
   if (this.isLoading || this.isChain()) {
-    $(".dataTables_scrollBody").autoScroll({
-            scrollBy: self.additionalParams.scroll.by,
-            scrollSpeed: self.additionalParams.scroll.speed,
-            scrollResumes: self.additionalParams.scroll.pause
-    })
+    $(".dataTables_scrollBody").autoScroll(self.additionalParams.scroll)
     .on("done", function() {
             doneEvent();
     });
