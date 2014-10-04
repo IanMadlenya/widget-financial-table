@@ -90,24 +90,14 @@ RiseVision.Financial = function() {
   	"sScrollY": "500px"	//Needed just to force table structure conducive to sorting.
   };
   
-  function getTextNode(font, name) {
-    return document.createTextNode("." + name + "{" +
-    "font-family: " + font.font.family + ";" +
-    "font-size: " + font.size + "px" + ";" +
-    "font-weight: " + (font.bold ? "bold" : "normal") + ";" +
-    "font-style: " + (font.italic ? "italic" : "normal") + ";" +
-    "text-decoration: " + (font.underline ? "underline" : "none") + ";" +
-    "}");
-  }
-  
   this.appendStyle = function() {
     var styleNode = document.createElement("style");
     
     if (this.additionalParams && this.additionalParams.table) {
       //Inject CSS font styles into the DOM.
-      styleNode.appendChild(getTextNode(this.additionalParams.table.colHeaderFont, "heading_font-style"));
-      styleNode.appendChild(getTextNode(this.additionalParams.table.dataFont, "data_font-style"));
-      styleNode.appendChild(getTextNode(this.additionalParams.disclaimer.font, "disclaimer_font-style"));
+      styleNode.appendChild(document.createTextNode(RiseVision.Common.Utilities.getFontCssStyle("heading_font-style", this.additionalParams.table.colHeaderFont)));
+      styleNode.appendChild(document.createTextNode(RiseVision.Common.Utilities.getFontCssStyle("data_font-style", this.additionalParams.table.dataFont)));
+      styleNode.appendChild(document.createTextNode(RiseVision.Common.Utilities.getFontCssStyle("disclaimer_font-style", this.additionalParams.disclaimer.font)));
       styleNode.appendChild(document.createTextNode(".dataTable .even{background-color:" + this.additionalParams.table.rowColor + ";}"));
       styleNode.appendChild(document.createTextNode(".dataTable .odd{background-color:" + this.additionalParams.table.altRowColor + ";}"));
       // styleNode.appendChild(document.createTextNode(".selected{background-color:" + this.additionalParams.table.selectedColor + ";}"));
@@ -168,11 +158,7 @@ RiseVision.Financial.prototype.setParams = function(name, value) {
       
     financial.additionalParams = JSON.parse(value[0]);
     
-    var bgColor = financial.additionalParams.background.color;
-
-    if (bgColor && bgColor !== "") {
-      document.body.style.background = bgColor;
-    }
+    document.body.style.background = financial.additionalParams.background.color || "transparent";
     
     financial.appendStyle();
     
@@ -202,17 +188,14 @@ RiseVision.Financial.prototype.setParams = function(name, value) {
     	else {
   	    financial.requestedFields.push(value.id);
     	}
-    });
       
-    financial.requestedFields.push("code");
-    financial.requestedFields.push("name");	//Issue 853
-    
-    $.each(financial.additionalParams.columns, function(index, value) {				
-    	if (value.id === "logo") {
-    	    financial.hasLogos = true;		    
-    	    return false;
-    	}	    
+      if (value.id === "logo") {
+        financial.hasLogos = true;		    
+      }	    
     });
+
+    financial.requestedFields.push("code");
+    financial.requestedFields.push("name");	//Issue 853    
   }
   
   if (name[1] && name[1] === "displayId") {
@@ -508,13 +491,13 @@ RiseVision.Financial.prototype.initTable = function() {
     
   //Conditions
   $.each(this.additionalParams.columns, function(index, value) {
-    if (value.condition === "changeUp" || value.condition === "changeDown") {
+    if (value.colorCondition === "up-green" || value.colorCondition === "up-red") {
       var results = self.financial.compare(value.id);
         
       $.each(results, function(i, result) {
         var $cell = $("td." + value.id).eq(i);
         
-        if (value.condition === "changeUp") {
+        if (value.colorCondition === "up-green") {
           if (result === 1) {
             $cell.addClass("changeUpIncrease");
           }
@@ -538,13 +521,13 @@ RiseVision.Financial.prototype.initTable = function() {
         }
       });
     }
-    else if (value.condition === "valuePositive" || value.condition === "valueNegative") {
+    else if (value.colorCondition === "positive-green" || value.colorCondition === "positive-red") {
       var results = self.financial.checkSigns(value.id);
 
       $.each(results, function(i, result) {
         var $cell = $("td." + value.id).eq(i);
 
-        if (value.condition === "valuePositive") {
+        if (value.colorCondition === "positive-green") {
           //Positive or 0
           if (result === 1) {
             $cell.addClass("valuePositivePositive");
@@ -572,7 +555,7 @@ RiseVision.Financial.prototype.initTable = function() {
   if (this.isLoading || this.isChain()) {
     $(".dataTables_scrollBody").autoScroll(self.additionalParams.scroll)
     .on("done", function() {
-            doneEvent();
+      self.onLastItemScrolled.call();
     });
     // $(".dataTables_scrollBody").infiniteScroll({
     //   scrollBy: self.additionalParams.scroll.by,
@@ -615,15 +598,15 @@ RiseVision.Financial.prototype.addHeadings = function() {
 
     if (value.id === "logo") {
       th.setAttribute("class", "logo");
-      $(th).html("Logo");
+      $(th).html(value.headerText || "Logo");
     }
     else if (value.id === "instrument") {
       th.setAttribute("class", self.data.getColumnId(0));
-      $(th).html(self.data.getColumnLabel(0));
+      $(th).html(value.headerText || self.data.getColumnLabel(0));
     }
     else {
       th.setAttribute("class", self.data.getColumnId(self.financial.dataFields[value.id]));
-      $(th).html(self.data.getColumnLabel(self.financial.dataFields[value.id]));	    
+      $(th).html(value.headerText || self.data.getColumnLabel(self.financial.dataFields[value.id]));	    
     }
 
     $(th).addClass("heading_font-style");	
@@ -667,10 +650,12 @@ RiseVision.Financial.prototype.addRow = function(row, tr) {
       
       //Remember the position of the logo column.
       if (value.id === "logo") {
-        logoIndex = index;		
+        logoIndex = index;
+        td.setAttribute("class", "data_font-style logo");
+        $(tr).append(td);
       }
       else if (value.id === "instrument") {
-        td.setAttribute("class", "data_font-style " + self.data.getColumnId((0)));
+        td.setAttribute("class", "data_font-style " + self.data.getColumnId(0));
         $(td).html(self.data.getFormattedValue(row, 0));
         $(tr).append(td);
       }
@@ -683,8 +668,8 @@ RiseVision.Financial.prototype.addRow = function(row, tr) {
       
       //Add logo as background image last, so that we know what the height of the logo should be.
       if ((logoIndex !== -1) && (index === self.additionalParams.columns.length - 1)) {
-        td = document.createElement("td");
-        td.setAttribute("class", "data_font-style logo");
+        td = $(tr).find("td").eq(logoIndex);
+        td.attr("class", "data_font-style logo");
 
         if (self.urls[row] !== null) {
           var $img = $("<img>");
@@ -695,8 +680,6 @@ RiseVision.Financial.prototype.addRow = function(row, tr) {
         else {
           $(td).html(self.data.getFormattedValue(row, self.financial.dataFields["name"]));
         }
-
-        $(tr).find("td").eq(logoIndex).before(td);
       }
     });
 
@@ -796,10 +779,10 @@ RiseVision.Financial.prototype.formatFields = function() {
               }
             }
 
-            $("th").eq(index).css("text-align", value.alignment);
+            $("th").eq(index).css("text-align", value.align);
           }
             
-          $fields.css("text-align", value.alignment);
+          $fields.css("text-align", value.align);
             
           //Decimals and Sign
           $fields.each(function(i) {
@@ -820,15 +803,15 @@ RiseVision.Financial.prototype.formatFields = function() {
               if (value.sign === "none") {
                 $(this).html(self.addCommas(Math.abs(number).toFixed(value.decimals)));
               }
-              else if (value.sign === "minus") {
+              else if (value.sign === "neg") {
                 $(this).html(self.addCommas(number));
               }
-              else if (value.sign === "plusMinus") {
+              else if (value.sign === "pos-neg") {
                 if (parseFloat(number) > 0) {
                   $(this).html("+" + self.addCommas(number));
                 }
               }
-              else if (value.sign === "parentheses") {
+              else if (value.sign === "bracket") {
                 if (parseFloat(number) < 0) {
                   $(this).html("(" + self.addCommas(Math.abs(number).toFixed(value.decimals)) + ")");
                 }
@@ -879,13 +862,13 @@ RiseVision.Financial.prototype.addCommas = function(number)
   return x1 + x2;
 };
 
-RiseVision.Financial.prototype.onLastItemScrolled = function(e) {
-  if (this.scrollBy !== "page") {
+RiseVision.Financial.prototype.onLastItemScrolled = function() {
+  if (this.additionalParams.scroll.by !== "page") {
     doneEvent();
   }
 
   if (this.checkForUpdates) {
-    if (this.scrollBy === "page") {
+    if (this.additionalParams.scroll.by === "page") {
       //$(".dataTables_scrollBody").infiniteScroll.stop();
       this.checkForUpdates = false;
       this.getData();
