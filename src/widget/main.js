@@ -3,7 +3,7 @@
 (function (window, document, gadgets) {
   "use strict";
 
-  var prefs = new gadgets.Prefs(),
+  var prefs = new gadgets.Prefs();
 
   function play() {
     RiseVision.Financial.Table.play();
