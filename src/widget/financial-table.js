@@ -64,17 +64,16 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
   };
   
   function _appendStyle() {
-    var styleNode = document.createElement("style");
-    
     if (_additionalParams && _additionalParams.table) {
       //Inject CSS font styles into the DOM.
-      styleNode.appendChild(document.createTextNode(utils.getFontCssStyle("heading_font-style", _additionalParams.table.colHeaderFont)));
-      styleNode.appendChild(document.createTextNode(utils.getFontCssStyle("data_font-style", _additionalParams.table.dataFont)));
-      styleNode.appendChild(document.createTextNode(utils.getFontCssStyle("disclaimer_font-style", _additionalParams.disclaimer.font)));
-      styleNode.appendChild(document.createTextNode(".dataTable .even{background-color:" + _additionalParams.table.rowColor + ";}"));
-      styleNode.appendChild(document.createTextNode(".dataTable .odd{background-color:" + _additionalParams.table.altRowColor + ";}"));
-      // styleNode.appendChild(document.createTextNode(".selected{background-color:" + _additionalParams.table.selectedColor + ";}"));
-      document.getElementsByTagName("head")[0].appendChild(styleNode);
+      utils.addCssRules([
+        utils.getFontCssStyle("heading_font-style", _additionalParams.table.colHeaderFont),
+        utils.getFontCssStyle("data_font-style", _additionalParams.table.dataFont),
+        utils.getFontCssStyle("disclaimer_font-style", _additionalParams.disclaimer.font),
+        ".dataTable .even{background-color:" + _additionalParams.table.rowColor + ";}",
+        ".dataTable .odd{background-color:" + _additionalParams.table.altRowColor + ";}"
+        // ".selected{background-color:" + _additionalParams.table.selectedColor + ";}"
+      ]);
     }
   }
 
@@ -454,13 +453,13 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
       
     //Conditions
     $.each(_additionalParams.columns, function(index, value) {
-      if (value.colorCondition === "up-green" || value.colorCondition === "up-red") {
+      if (value.colorCondition === "change-up" || value.colorCondition === "change-down") {
         var results = _financial.compare(value.id);
           
         $.each(results, function(i, result) {
           var $cell = $("td." + value.id).eq(i);
           
-          if (value.colorCondition === "up-green") {
+          if (value.colorCondition === "change-up") {
             if (result === 1) {
               $cell.addClass("changeUpIncrease");
             }
@@ -484,13 +483,13 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
           }
         });
       }
-      else if (value.colorCondition === "positive-green" || value.colorCondition === "positive-red") {
+      else if (value.colorCondition === "value-positive" || value.colorCondition === "value-negative") {
         var results = _financial.checkSigns(value.id);
 
         $.each(results, function(i, result) {
           var $cell = $("td." + value.id).eq(i);
 
-          if (value.colorCondition === "positive-green") {
+          if (value.colorCondition === "value-positive") {
             //Positive or 0
             if (result === 1) {
               $cell.addClass("valuePositivePositive");
