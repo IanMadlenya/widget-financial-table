@@ -66,7 +66,7 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
   function _appendStyle() {
     if (_additionalParams && _additionalParams.table) {
       //Inject CSS font styles into the DOM.
-      utils.addCssRules([
+      utils.addCSSRules([
         utils.getFontCssStyle("heading_font-style", _additionalParams.table.colHeaderFont),
         utils.getFontCssStyle("data_font-style", _additionalParams.table.dataFont),
         utils.getFontCssStyle("disclaimer_font-style", _additionalParams.disclaimer.font),
