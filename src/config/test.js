@@ -1,7 +1,8 @@
 "use strict";
 
 var FINANCIAL_TABLE_CONFIG = {
-  PRODUCT_CODE: "1c2acf0b1e789bf4f14506e3e27c8a32832b6d5a"
+  PRODUCT_CODE: "1c2acf0b1e789bf4f14506e3e27c8a32832b6d5a",
+  LOGOS_URL: "https://s3.amazonaws.com/risecontentlogos/financial/"
 };
 
 if (typeof angular !== "undefined") {
