@@ -23,16 +23,13 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
 
   // instance variable Financial (RiseVision.Common.Financial.RealTime)
   var _financial = null;
-  var _data, _urls, _arrowCount;
+  var _data, _urls;
 
   var _additionalParams = null;
   var _requestedFields = [];
   
-  var _layoutURL;
-  var _layout;
   var _useDefault = false;
     
-  var _logosURL = "https://s3.amazonaws.com/risecontentlogos/financial/";
   var _hasLogos = false;
   var _hasLastItemScrolled = false;
   var _updateInterval = 60000;
@@ -131,20 +128,7 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
       document.body.style.background = _additionalParams.background.color || "transparent";
       
       _appendStyle();
-      
-      //Gadget settings
-      // _useDefault = prefs.getBool("useDefault");
-
-      // Use fixed layout
-      // _layoutURL = "/Layouts/Table.xml";
-      _layoutURL = "https://s3.amazonaws.com/Widget-Financial-Table/0.1.0/Layouts/Table.xml";
-      // if (_useDefault) {
-      //   _layoutURL = "";
-      // }
-      // else {	
-      //   _layoutURL = prefs.getString("layoutURL");
-      // }
-      
+            
       //Determine what columns will need to be requested from the data source.
       //Instrument is always returned.      
       $.each(_additionalParams.columns, function(index, value) {
@@ -177,43 +161,13 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
     _init();
   }
   
-  function _init() {
-    var params = {};
-    
+  function _init() {    
     _financial = new RiseVision.Common.Financial.RealTime(_displayId, _additionalParams.instruments);
-      
-    if (_useDefault) {
+
+    RiseVision.Financial.Layout.load(function() {
       _getData();
-      _authorize();
-    }
-    else {
-      //Load custom layout.
-      if (_layoutURL) {
-        params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;	
-        gadgets.io.makeRequest(_layoutURL, function(obj) {
-          var data = obj.data;
-
-          if (data.getElementsByTagName("Style").length > 0) {
-            var head = document.getElementsByTagName("head")[0],
-              style = document.createElement("style");
-            
-            style.type = "text/css";
-            style.innerHTML = data.getElementsByTagName("Style")[0].childNodes[1].nodeValue;
-            head.appendChild(style);
-          }
-
-          if (data.getElementsByTagName("Layout").length === 0) {
-            console.log("No Layout tag specified in custom layout file.");
-            return;
-          }
-
-          _layout = data.getElementsByTagName("Layout")[0].childNodes[1].nodeValue;
-          
-          _getData();
-          _authorize();
-        }, params);
-      }
-    }
+      _authorize();      
+    });
   }
   
   function _authorize() {
@@ -241,15 +195,15 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
         if (data) {
           _data = data;
           _urls = urls;
-          _arrowCount = 0;
           
           //Temporarily size the Gadget using the UserPrefs. Workaround for multi-page Presentation issue.
           $("#container").width(_prefs.getString("rsW"));
           $("#container").height(_prefs.getString("rsH"));
           
           if (_isLoading) {
-            _loadArrow(_logosURL + "animated-green-arrow.gif");
-            _loadArrow(_logosURL + "animated-red-arrow.gif");
+            RiseVision.Common.ArrowLoader.load(function() {
+              _loadLayout();
+            });
           }
           else {
             //Only chains could potentially contain different instruments.
@@ -257,12 +211,7 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
                 _checkInstruments(false);
             }
 
-            if (_layoutURL) {
-                _showCustomLayout();
-            }
-            else {
-                _showDefaultLayout();
-            }
+            _loadLayout();
           }
         }
         else {
@@ -275,78 +224,38 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
     }
   } 
   
-  function _loadArrow(url) {
-    var img = new Image();
-
-    img.onload = function() {
-      _onArrowLoaded();
-    };
-
-    img.onerror = function() {
-      _onArrowLoaded();
-    };
-
-    img.src = url;
-  }
-
-  function _onArrowLoaded() {
-    _arrowCount++;
-
-    if (_arrowCount === 2) {
-      if (_layoutURL) {
-        _showCustomLayout();
-      }
-      else {
-        _showDefaultLayout();
-      }
-    }
-  }
-
-  function _showDefaultLayout() {
-    var disclaimer = null,
-      table = null;
-
+  function _loadLayout() {
     if (_isLoading || _isChain()) {
       _selectedIndex = $(".selected").index();
 
-      $("#container").empty();
-
-      //Configure disclaimer.
-      disclaimer = document.createElement("div");
-      disclaimer.setAttribute("id", "disclaimer");
-      disclaimer.setAttribute("class", "default");
-      $("#container").append(disclaimer);
-
-      //Configure table.
-      table = document.createElement("table");
-      table.setAttribute("id", "financial");
-      table.setAttribute("class", "default page");	
-      $("#container").append(table);
+      RiseVision.Financial.Layout.loadLayout(_data.getNumberOfRows());
+      
+      _configureDisclaimer();
+      _initTable();
     }
-
-    _initTable();
   }
+  
+  function _configureDisclaimer() {
+    //Configure disclaimer.
+    $("#disclaimer").text("Market Data by Thomson Reuters - Delayed 20 Minutes");
+    $("#disclaimer").addClass("disclaimer_font-style");
+    $("#disclaimer").addClass("default");
 
-  /* Custom layout may or may not be a table. Need to account for both possibilities. */
-  function _showCustomLayout() {
-    var numRows = 0;
+    if ((_disclaimerLoc === "bottomRight") || (_disclaimerLoc === "bottomLeft")) {	
+      $("#disclaimer").addClass("bottom");
 
-    if (_isLoading || _isChain()) {
-      numRows = _data.getNumberOfRows();
-
-      $("#container").empty();
-      $("#container").append(_layout);
-
-      for (var row = 0; row < numRows; row++) {
-        var parent = $(".repeat:first").parent();
-        
-        if (row > 0) {
-          $(parent).append($(".repeat:first").clone());
-        }
+      if (_disclaimerLoc === "bottomRight") {
+        $("#disclaimer").addClass("right");
       }
     }
-
-    _initTable();
+    else {
+      $("#container").addClass("fullScreen");	
+      $("#disclaimer").addClass("top");
+      
+      if (_disclaimerLoc === "topRight") {
+        $("#disclaimer").addClass("right");
+      }
+    }
   }
 
   function _initTable() {
@@ -425,27 +334,6 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
       $("table tr th:last-child, td:last-child").css({
         "padding-right": "10px"
       });
-
-      //Configure disclaimer.
-      $("#disclaimer").text("Market Data by Thomson Reuters - Delayed 20 Minutes");
-      $("#disclaimer").addClass("disclaimer_font-style");
-      $("#disclaimer").addClass("default");
-
-      if ((_disclaimerLoc === "bottomRight") || (_disclaimerLoc === "bottomLeft")) {	
-        $("#disclaimer").addClass("bottom");
-
-        if (_disclaimerLoc === "bottomRight") {
-          $("#disclaimer").addClass("right");
-        }
-      }
-      else {
-        $("#container").addClass("fullScreen");	
-        $("#disclaimer").addClass("top");
-        
-        if (_disclaimerLoc === "topRight") {
-          $("#disclaimer").addClass("right");
-        }
-      }
 
       //$(".dataTables_scrollBody").height(($("#container").outerHeight(true) - $("#disclaimer").height() - $(".dataTables_scrollHead").height()) / prefs.getInt("rsH") * 100 + "%");    
       $(".dataTables_scrollBody").height($("#container").outerHeight() - $("#disclaimer").outerHeight() - $(".dataTables_scrollHead").outerHeight() + "px");    
@@ -783,10 +671,10 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
                   $(this).html(_addCommas(Math.abs(number).toFixed(value.decimals)));
 
                   if (parseFloat(number) < 0) {
-                    $img.attr("src", _logosURL + "animated-red-arrow.gif");				    				    			
+                    $img.attr("src", config.LOGOS_URL + "animated-red-arrow.gif");				    				    			
                   }
                   else if (parseFloat(number) >= 0) {
-                    $img.attr("src", _logosURL + "animated-green-arrow.gif");
+                    $img.attr("src", config.LOGOS_URL + "animated-green-arrow.gif");
                   }
 
                   $(this).prepend($img);
