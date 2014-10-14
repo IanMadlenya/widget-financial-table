@@ -16,8 +16,6 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
   // private variables
   var _prefs = null;
 
-  var _disclaimerLoc = "bottomRight";
-
   var _displayId = "", _companyId = "";
   var _isAuthorized = true;
 
@@ -230,31 +228,8 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
 
       RiseVision.Financial.Layout.loadLayout(_data.getNumberOfRows());
       
-      _configureDisclaimer();
+      RiseVision.Financial.Disclaimer.load();
       _initTable();
-    }
-  }
-  
-  function _configureDisclaimer() {
-    //Configure disclaimer.
-    $("#disclaimer").text("Market Data by Thomson Reuters - Delayed 20 Minutes");
-    $("#disclaimer").addClass("disclaimer_font-style");
-    $("#disclaimer").addClass("default");
-
-    if ((_disclaimerLoc === "bottomRight") || (_disclaimerLoc === "bottomLeft")) {	
-      $("#disclaimer").addClass("bottom");
-
-      if (_disclaimerLoc === "bottomRight") {
-        $("#disclaimer").addClass("right");
-      }
-    }
-    else {
-      $("#container").addClass("fullScreen");	
-      $("#disclaimer").addClass("top");
-      
-      if (_disclaimerLoc === "topRight") {
-        $("#disclaimer").addClass("right");
-      }
     }
   }
 
