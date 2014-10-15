@@ -123,7 +123,10 @@
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
-  gulp.task("html:e2e", factory.htmlE2E());
+  gulp.task("html:e2e", factory.htmlE2E({
+    files: ["./src/settings.html", "./src/widget.html"],
+    e2eVisualization: "../node_modules/widget-tester/mocks/visualization-api-mock.js"
+  }));
 
   gulp.task("test:unit:ng", factory.testUnitAngular(
     {testFiles: [
@@ -148,11 +151,19 @@
 
   gulp.task("webdriver_update", factory.webdriveUpdate());
   gulp.task("e2e:server-close", factory.testServerClose());
-  gulp.task("test:e2e:settings", ["webdriver_update", "html:e2e", "e2e:server"], factory.testE2EAngular());
+  gulp.task("test:e2e:widget", factory.testE2E({
+    testFiles: "test/e2e/financial-table-widget-scenarios.js"}
+  ));
+  gulp.task("test:e2e:settings", ["webdriver_update"], factory.testE2EAngular({
+    testFiles: "test/e2e/financial-table-settings-scenarios.js"}
+  ));
+  gulp.task("test:e2e", function(cb) {
+    runSequence(["html:e2e", "e2e:server"], "test:e2e:widget", "test:e2e:settings", "e2e:server-close", cb);
+  });
   gulp.task("test:metrics", factory.metrics());
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit:ng", "test:e2e:settings", "e2e:server-close", "test:metrics", cb);
+    runSequence("test:unit:ng", "test:e2e", "test:metrics", cb);
   });
 
   gulp.task("default", function(cb) {
