@@ -20,8 +20,7 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
     // _useDefault = prefs.getBool("useDefault");
 
     // Use fixed layout
-    // _layoutURL = "/Layouts/Table.xml";
-    _layoutURL = "https://s3.amazonaws.com/Widget-Financial-Table/0.1.0/Layouts/Table.xml";
+    _layoutURL = "../Layouts/Table.xml";
     // if (_useDefault) {
     //   _layoutURL = "";
     // }
@@ -33,10 +32,7 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
       callback();
     }
     else if (_layoutURL) {
-      params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;	
-      gadgets.io.makeRequest(_layoutURL, function(obj) {
-        var data = obj.data;
-
+      $.ajax(_layoutURL).done(function(data) {
         if (data.getElementsByTagName("Style").length > 0) {
           var head = document.getElementsByTagName("head")[0],
             style = document.createElement("style");
@@ -54,11 +50,13 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
         _layout = data.getElementsByTagName("Layout")[0].childNodes[1].nodeValue;
         
         callback();
-      }, params);
+      });
     }
   }
   
   function _loadLayout(numRows) {
+    $("#container").empty();
+
     if (_layoutURL) {
         _showCustomLayout(numRows);
     }
@@ -70,8 +68,6 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
   function _showDefaultLayout() {
     var disclaimer = null,
       table = null;
-
-    $("#container").empty();
 
     //Configure disclaimer.
     disclaimer = document.createElement("div");
@@ -88,7 +84,6 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
 
   /* Custom layout may or may not be a table. Need to account for both possibilities. */
   function _showCustomLayout(numRows) {
-    $("#container").empty();
     $("#container").append(_layout);
 
     for (var row = 0; row < numRows; row++) {
