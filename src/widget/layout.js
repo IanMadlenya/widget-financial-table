@@ -20,7 +20,7 @@ RiseVision.Financial.Layout = (function (document, gadgets) {
     // _useDefault = prefs.getBool("useDefault");
 
     // Use fixed layout
-    _layoutURL = "../Layouts/Table.xml";
+    _layoutURL = "layouts/table.xml";
     // if (_useDefault) {
     //   _layoutURL = "";
     // }
