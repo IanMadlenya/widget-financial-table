@@ -134,7 +134,7 @@
     e2eVisualization: "../node_modules/widget-tester/mocks/visualization-api-mock.js"
   }));
 
-  gulp.task("test:unit:ng", factory.testUnitAngular(
+  gulp.task("test:unit:settings", factory.testUnitAngular(
     {testFiles: [
       "src/components/jquery/dist/jquery.min.js",
       "src/components/q/q.js",
@@ -152,7 +152,17 @@
       "src/components/widget-settings-ui-components/dist/js/angular/*.js",
       "src/settings/settings-app.js",
       "src/settings/**/*.js",
-      "test/unit/**/*spec.js"]}
+      "test/unit/settings/**/*spec.js"]}
+  ));
+  
+  gulp.task("test:unit:widget", factory.testUnitAngular(
+    {testFiles: [
+      "src/components/jquery/dist/jquery.min.js",
+      "node_modules/widget-tester/mocks/gadget-mocks.js",
+      "node_modules/widget-tester/mocks/visualization-api-mock.js",
+      "src/config/test.js",
+      "src/widget/**/*.js",
+      "test/unit/widget/**/*spec.js"]}
   ));
 
   gulp.task("webdriver_update", factory.webdriveUpdate());
@@ -163,13 +173,18 @@
   gulp.task("test:e2e:settings", ["webdriver_update"], factory.testE2EAngular({
     testFiles: "test/e2e/financial-table-settings-scenarios.js"}
   ));
+  
+  gulp.task("test:unit", function(cb) {
+    runSequence("test:unit:widget", "test:unit:settings", cb);
+  });
+
   gulp.task("test:e2e", function(cb) {
     runSequence(["html:e2e", "e2e:server"], "test:e2e:widget", "test:e2e:settings", "e2e:server-close", cb);
   });
   gulp.task("test:metrics", factory.metrics());
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit:ng", "test:e2e", "test:metrics", cb);
+    runSequence("test:unit", "test:e2e", "test:metrics", cb);
   });
 
   gulp.task("default", function(cb) {
