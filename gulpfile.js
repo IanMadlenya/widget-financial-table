@@ -130,8 +130,8 @@
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
   gulp.task("html:e2e", factory.htmlE2E({
     files: ["./src/settings.html", "./src/widget.html"],
-    e2eVisualization: "../test/visualization-api-mock.js",
-    e2egadgets : "../test/gadget-mocks.js"
+    e2emockData: "../test/mock-data.js",
+    e2eVisualization: "../node_modules/widget-tester/mocks/visualization-api-mock.js"
   }));
 
   gulp.task("test:unit:ng", factory.testUnitAngular(

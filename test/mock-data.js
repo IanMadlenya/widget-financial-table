@@ -1,7 +1,8 @@
-
 ;(function(window) {
+    
+  window.gadget = window.gadget || {};
   
-  var settings = {
+  window.gadget.settings = {
     "params": {
     },
     "additionalParams": {
@@ -107,69 +108,24 @@
     }
   };
   
-  var rpc = function (methodName, callback, params) {
-    if(methodName === "rscmd_saveSettings") {
-      window.result.params = params.params;
-      window.result.additionalParams = params.additionalParams;
-      if(callback) {
-        callback(params);
-      }
-      else{ return params; }
-    }
-    else if (methodName === "rscmd_getAdditionalParams"){
-      if(callback) {
-        callback(window.result.additionalParams);
-      }
-    }
-    else if (methodName === "rsparam_get") {
-      RiseVision.Financial.Table.setParams([
-        "additionalParams", 
-        "displayId", 
-        "companyId"
-      ], 
-      [
-        JSON.stringify(settings.additionalParams), 
-        "displayId", 
-        "companyId"
-      ]);
-    }
-    else if (methodName === "rsevent_ready") {
-      RiseVision.Financial.Table.play();
-    }
-    else {throw "Unknown method"; }
+  window.gadget.data = {
+    cols: [
+      {"id":"instrument","label":"Instrument","type":"string","pattern":""},
+      {"id":"code","label":"Symbol Code","type":"string","pattern":""},
+      {"id":"name","label":"Name","type":"string","pattern":""},
+      {"id":"startTime","label":"Collection Start Time","type":"datetime","pattern":""},
+      {"id":"endTime","label":"Collection End Time","type":"datetime","pattern":""},
+      {"id":"daysOfWeek","label":"Collection Days of Week","type":"string","pattern":""},
+      {"id":"timeZoneOffset","label":"Collection Time Zone Offset","type":"string","pattern":""}
+    ],
+    rows: [
+      ["AA", "AA.N", "ALCOA", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"],
+      ["AXP", "AXP.N", "AMERICAN EXPRESS INC", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"],
+      ["BA", "BA.N", "BOEING CO", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"],
+      ["BAC", "BAC.N", "BANK OF AMERICA CORP", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"],
+      ["CAT", "CAT.N", "CATERPILLAR INC", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"],
+      ["CSCO", "CSCO.O", "CISCO SYSTEMS", new Date(2014,9,15,9,30,0), new Date(2014,9,15,16,30,0), "1,2,3,4,5", "-0400"]
+    ]
   };
 
-  rpc.register = function (methodName, callback) {
-  };
-
-  window.result = {
-    additionalParams: JSON.stringify(
-      {}
-    )};
-
-  window.gadgets = {
-    Prefs: function () {
-      return {
-        getString: function (value) {
-          switch (value) {
-            case "rsW": 
-              return window.innerWidth;
-            case "rsH": 
-              return window.innerHeight;
-          }
-          return value;
-        },
-        getBool: function () {
-          //TODO
-          return false;
-        },
-        getInt: function () {
-          //TODO
-          return -1;
-        }
-      };
-    },
-    rpc: rpc
-  };
-  
 })(window);
