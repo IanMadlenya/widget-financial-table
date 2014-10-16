@@ -75,6 +75,11 @@
     return gulp.src(["src/components/select2/*.png", "src/components/select2/*.gif"])
       .pipe(gulp.dest("dist/css"));
   });
+  
+  gulp.task("layouts", function() {
+    return gulp.src(["src/layouts/*.xml"])
+      .pipe(gulp.dest("dist/layouts"));
+  });
 
   gulp.task("json-move", function() {
     // in case some files have the same name
@@ -119,7 +124,7 @@
 
 
   gulp.task('build', function (cb) {
-      runSequence(["clean", "config"], ["html", "fonts", "images", "i18n"], cb);
+      runSequence(["clean", "config"], ["html", "fonts", "images", "layouts", "i18n"], cb);
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
