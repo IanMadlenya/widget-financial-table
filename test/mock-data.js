@@ -53,8 +53,7 @@
           "italic":false,
           "underline":false,
           "color":"black",
-          "highlightColor":"transparent",
-          "align":"left"
+          "highlightColor":"transparent"
         },
         "dataFont": {
           "font": {
