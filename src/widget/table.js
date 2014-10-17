@@ -20,27 +20,17 @@ RiseVision.Common.Table = function(additionalParams, financial, prefs) {
   this._isLoading = true;
   this._isChain = false;
   
-  this._sortConfig = {
-  	"bAutoWidth": false,
-  	"bDestroy": true,
-  	"bFilter": false,
-  	"bInfo": false,
-  	"bLengthChange": false,
-  	"bPaginate": false,
-  	"bSort": false,
-  	"sScrollY": "500px"	//Needed just to force table structure conducive to sorting.
+  this._tableConfig = {
+    autoWidth: false,
+    destroy: true,
+    searching: false,
+    info: false,
+    lengthChange: false,
+    paging: false,
+    ordering: false,
+    scrollY: "500px",
+    scrollCollapse: true
   };
-  
-  // this.f_dataTableOptions = {
-  //   destroy: true,
-  //   searching: false,
-  //   info: false,
-  //   lengthChange: false,
-  //   paging: false,
-  //   ordering: false,
-  //   scrollY: "500px",
-  //   scrollCollapse: true
-  // };
   
   this._addCommas = function(number) {
     number += "";
@@ -86,6 +76,7 @@ RiseVision.Common.Table = function(additionalParams, financial, prefs) {
   
   //Update the rows in place for all instruments returned by the data server.
   this._updateRows = function() {
+    var self = this;
     var $tr,
       newRows = [],
       numRows = this._data.getNumberOfRows(),
@@ -366,19 +357,19 @@ RiseVision.Common.Table.prototype.initTable = function(data, urls, isLoading, is
   this._formatFields();    
     
   if (this._isLoading || this._isChain) {
-    this._sortConfig.aoColumnDefs = [];
+    this._tableConfig.columnDefs = [];
   
     //Use oSettings.aoColumns.sWidth for datatables to size columns.
     $.each(this._additionalParams.columns, function(index, value) {
       if (value.width) {		
-        self._sortConfig.aoColumnDefs.push({
-          "sWidth": value.width,
-          "aTargets": [index]
+        self._tableConfig.columnDefs.push({
+          "width": value.width,
+          "targets": [index]
         });
       }
     });
 
-    $("#financial").dataTable(this._sortConfig);
+    $("#financial").dataTable(this._tableConfig);
 
     //TODO: Try setting padding as part of _sortConfig to see if it prevents column alignment issues.
     //Row Padding
