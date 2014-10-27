@@ -351,7 +351,7 @@ RiseVision.Common.Table.prototype.initTable = function(data, urls, isLoading, is
   }
   else {
     //Update rows.
-    this.updateRows();
+    this._updateRows();
   }
     
   this._formatFields();    
