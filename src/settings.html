@@ -19,8 +19,11 @@
 	<link rel="stylesheet" href="components/rv-bootstrap-formhelpers/dist/css/rv-bootstrap-formhelpers.css">
 	<link rel="stylesheet" href="components/component-subscription-status/dist/css/subscription-status.css">
   <!-- endbuild -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+
 </head>
-<body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController">
+<body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController" ng-cloak>
 	<div class="widget">
 		<div class="overlay"></div>
 		<div class="settings">
@@ -113,7 +116,6 @@
 		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 
 	<!-- build:js js/settings.min.js -->
 	<script src="components/angular-translate/angular-translate.js"></script>
