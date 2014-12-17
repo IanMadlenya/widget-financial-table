@@ -1,4 +1,4 @@
-# Financial Table Widget [![Build Status](http://devtools1.risevision.com:8080/job/Widget-Financial-Table-Master-Build/badge/icon)](http://devtools1.risevision.com:8080/job/Widget-Financial-Table-Master-Build/)
+# Financial Table Widget [![Circle CI](https://circleci.com/gh/Rise-Vision/widget-financial-table/tree/master.svg?style=svg)](https://circleci.com/gh/Rise-Vision/widget-financial-table/tree/master)
 
 ## Introduction
 
