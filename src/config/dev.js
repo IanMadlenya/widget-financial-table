@@ -8,6 +8,11 @@ var FINANCIAL_TABLE_CONFIG = {
 if (typeof angular !== "undefined") {
   angular.module("risevision.widget.financialTable.config", [])
     .value("PRODUCT_CODE", FINANCIAL_TABLE_CONFIG.PRODUCT_CODE)
-    .value("PRODUCT_ID", "13")
-  ;
+    .value("PRODUCT_ID", "13");
+  
+  angular.module("risevision.common.i18n.config", [])
+    .constant("LOCALES_PREFIX",
+      "components/rv-common-i18n/dist/locales/translation_")
+    .constant("LOCALES_SUFIX", ".json");
+
 }

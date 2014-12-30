@@ -9,11 +9,13 @@
     "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git",
     "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git",
     "component-financial-selector": "https://github.com/Rise-Vision/component-financial-selector.git",
-    "component-subscription-status": "https://github.com/Rise-Vision/component-subscription-status.git#0.1.0",
+    "component-subscription-status": "https://github.com/Rise-Vision/component-subscription-status.git#master",
     "rv-data-tables": "https://github.com/Rise-Vision/DataTables.git",
     "auto-scroll": "https://github.com/Rise-Vision/auto-scroll.git"
   },
   "resolutions": {
-    "jquery": "1.11.0"
+    "jquery": "1.11.0",
+    "angular-translate": "~2.4.2",
+    "angular-translate-loader-static-files": "~2.4.2"
   }
 }

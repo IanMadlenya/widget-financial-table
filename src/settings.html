@@ -19,9 +19,6 @@
 	<link rel="stylesheet" href="components/rv-bootstrap-formhelpers/dist/css/rv-bootstrap-formhelpers.css">
 	<link rel="stylesheet" href="components/component-subscription-status/dist/css/subscription-status.css">
   <!-- endbuild -->
-
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
-
 </head>
 <body ng-app="risevision.widget.financialTable.settings" ng-controller="settingsController" ng-cloak>
 	<div class="widget">
@@ -30,7 +27,7 @@
       <div class="settings-center">
 			  <div class="wrapper container modal-content" scroll-on-alerts ng-controller="financialTableSettingsController">
 				<div class="modal-header">
-				  <h1 id="settings-title"> {{'settings' | translate }}
+				  <h1 id="settings-title"> {{'financial-table.settings' | translate }}
 		        <button id="settings-close" type="button" class="close"
 		          ng-click="closeSettings();">
 							<i class="fa fa-times"></i>
@@ -51,11 +48,11 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div ng-class="{'form-group':true, 'has-error':settingsForm.instruments.$invalid}">
-								<label for="instruments" class="control-label">{{'instruments.label' | translate}}</label>
+								<label for="instruments" class="control-label">{{'financial-table.instruments.label' | translate}}</label>
 								<div name="instruments" financial-selector instruments="settings.additionalParams.instruments"
 									ng-model="financialselector" required></div>
 								<p class="text-danger" ng-show="settingsForm.instruments.$error.required">
-									{{'instruments.error.required' | translate}}
+									{{'financial-table.instruments.error.required' | translate}}
 								</p>
 							</div>
 						</div>
@@ -66,7 +63,7 @@
 								<column-selector name="columns"	columns="settings.additionalParams.columns" column-names="financialColumns"
 									ng-model="columnselector" required></column-selector>
 								<p class="text-danger" ng-show="settingsForm.columns.$error.required">
-									{{'columns.error.required' | translate}}
+									{{'financial-table.columns.error.required' | translate}}
 								</p>
 							</div>
 						</div>
@@ -74,13 +71,13 @@
 					<scroll-setting scroll="settings.additionalParams.scroll"></scroll-setting>
 					<table-setting table="settings.additionalParams.table"></table-setting>
 					<div class="section">
-						<h5>{{'disclaimer.heading' | translate}}</h5>
+						<h5>{{'financial-table.disclaimer.heading' | translate}}</h5>
 						<div class="row">
 							<div class="col-md-12">
-								<p class="text-warning">{{'disclaimer.warning' | translate}}</p>
+								<p class="text-warning">{{'financial-table.disclaimer.warning' | translate}}</p>
 								<div class="form-group">
 									<font-setting font-data="settings.additionalParams.disclaimer.font"
-											preview-text="{{'disclaimer.font.text' | translate}}" hide-alignment="true">
+											preview-text="{{'financial-table.disclaimer.font.text' | translate}}" hide-alignment="true">
 									</font-setting>
 								</div>
 							</div>
@@ -91,7 +88,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="checkbox">
-								<label for="terms">{{'default-layout' | translate}}
+								<label for="terms">{{'financial-table.default-layout' | translate}}
 									<input id="terms" name="terms" type="checkbox" ng-model="settings.additionalParams.defaultLayout" />
 								</label>
 							</div>
@@ -101,7 +98,7 @@
 						<div class="col-md-7">
 							<div class="form-group">
 							    <label for="layout-url">
-							    	{{'layout-url' | translate}}
+							    	{{'financial-table.layout-url' | translate}}
 							    </label>
 							    <input id="layout-url" name="layout-url" type="text"
 									ng-model="settings.additionalParams.layoutUrl" class="form-control" />
@@ -115,12 +112,15 @@
 		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+    
 	<!-- build:js js/settings.min.js -->
 	<script src="components/angular-translate/angular-translate.js"></script>
 	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 	<script src="components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
 	<script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="components/rv-common-i18n/dist/i18n.js"></script>
+			
 	<script src="config/config.js"></script>
 	<script src="settings/settings-app.js"></script>
 	<script src="components/widget-settings-ui-core/dist/widget-settings-ui-core.js"></script>

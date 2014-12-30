@@ -85,14 +85,14 @@
       "columns": [{
           "id":"instrument",
           "type":"text",
-          "name":"columns.instrument",
+          "name":"financial-table.columns.instrument",
           "align":"left",
           "width":100
         },
         {
           "id":"logo",
           "type":"text",
-          "name":"columns.instrument-logo",
+          "name":"financial-table.columns.instrument-logo",
           "align":"left",
           "width":100
         }

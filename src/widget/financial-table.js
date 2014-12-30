@@ -130,6 +130,8 @@ RiseVision.Financial.Table = (function (window, document, gadgets, utils, config
       _companyId = value[2];
     }
 
+    // _displayId = "f5497f07-3f97-499b-8708-024e8d11c9f4";
+
     _prefs = new gadgets.Prefs();
 
     _init();
