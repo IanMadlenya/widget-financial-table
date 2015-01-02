@@ -30,7 +30,6 @@
     "gulp-html2string": "^0.1.1",
     "gulp-ignore": "1.1.0",
     "gulp-jshint": "~1.5.5",
-    "gulp-jsoncombine": "1.0.0",
     "gulp-karma": "0.0.4",
     "gulp-map": "0.0.2",
     "gulp-minify-css": "~0.3.0",

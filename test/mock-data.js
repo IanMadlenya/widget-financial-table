@@ -128,3 +128,43 @@
   };
 
 })(window);
+
+var $ = $ || {};
+
+$.ajax = function(prefs) {
+  if (prefs && prefs.url) {
+    if (prefs.url.indexOf("displayId") > -1) {
+      var data = {authorized:false};
+      var textStatus = "OK";
+      prefs.success(data, textStatus);
+    }
+    else if (prefs.url.indexOf("Layout")){
+      
+    }
+  }
+  
+  return {
+    done: function(callback) {
+      var xmlhttp;
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "layouts/table.xml", false); 
+      xmlhttp.send(); 
+      var xmlDoc = xmlhttp.responseXML;
+      callback(xmlDoc);
+    }
+    
+  };
+};
+
+var _image = function() {
+  this.onload = null;
+  this.onerror = null;
+  this.src = null;
+  var that = this;
+  setTimeout(function() { 
+    if (that.onload)
+      that.onload(); 
+  }, 10);
+};
+
+window.Image = _image;

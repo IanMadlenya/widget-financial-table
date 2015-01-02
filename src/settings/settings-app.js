@@ -1,7 +1,7 @@
 angular.module("risevision.widget.financialTable.settings",
   ["risevision.widget.financialTable.config",
   "risevision.widget.common",
-  "risevision.widget.common.translate",
+  "risevision.common.i18n",
   "risevision.widget.common.financial",
   "risevision.widget.common.widget-button-toolbar",
   "risevision.widget.common.tooltip",
@@ -11,16 +11,3 @@ angular.module("risevision.widget.financialTable.settings",
   "risevision.widget.common.column-selector",
   "risevision.widget.common.background-setting",
   "risevision.widget.common.subscription-status"]);
-
-angular.module("risevision.widget.common.translate", ["pascalprecht.translate"])
-  .config(["$translateProvider", function ($translateProvider) {
-    $translateProvider.useStaticFilesLoader({
-      prefix: "locales/",
-      suffix: "/translation.json"
-    });
-    $translateProvider.determinePreferredLanguage();
-    if($translateProvider.preferredLanguage().indexOf("en_") === 0){
-      //default to "en" on any of the English variants
-      $translateProvider.preferredLanguage("en");
-    }
-  }]);

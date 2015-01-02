@@ -8,87 +8,87 @@ angular.module("risevision.widget.financialTable.settings")
       $scope.financialColumns = [
         {
           id: "instrument",
-          name: "columns.instrument",
+          name: "financial-table.columns.instrument",
           type: "text"
         },
         {
           id: "logo",
-          name: "columns.instrument-logo",
+          name: "financial-table.columns.instrument-logo",
           type: "text"
         },
         {
           id: "name",
-          name: "columns.instrument-name",
+          name: "financial-table.columns.instrument-name",
           type: "text"
         },
         {
           id: "lastPrice",
-          name: "columns.last-price",
+          name: "financial-table.columns.last-price",
           type: "int"
         },
         {
           id: "historicClose",
-          name: "columns.previous-close",
+          name: "financial-table.columns.previous-close",
           type: "int"
         },
         {
           id: "netChange",
-          name: "columns.change",
+          name: "financial-table.columns.change",
           type: "int"
         },
         {
           id: "percentChange",
-          name: "columns.percent-change",
+          name: "financial-table.columns.percent-change",
           type: "int"
         },
         {
           id: "accumulatedVolume",
-          name: "columns.accumulated-volume",
+          name: "financial-table.columns.accumulated-volume",
           type: "int"
         },
         {
           id: "dayHigh",
-          name: "columns.day-high",
+          name: "financial-table.columns.day-high",
           type: "int"
         },
         {
           id: "dayLow",
-          name: "columns.day-low",
+          name: "financial-table.columns.day-low",
           type: "int"
         },
         {
           id: "yearHigh",
-          name: "columns.52-week-high",
+          name: "financial-table.columns.52-week-high",
           type: "int"
         },
         {
           id: "yearLow",
-          name: "columns.52-week-low",
+          name: "financial-table.columns.52-week-low",
           type: "int"
         },
         {
           id: "bid",
-          name: "columns.bid",
+          name: "financial-table.columns.bid",
           type: "int"
         },
         {
           id: "ask",
-          name: "columns.ask",
+          name: "financial-table.columns.ask",
           type: "int"
         },
         {
           id: "yield",
-          name: "columns.yield",
+          name: "financial-table.columns.yield",
           type: "int"
         },
         {
           id: "yieldChange",
-          name: "columns.yield-change",
+          name: "financial-table.columns.yield-change",
           type: "int"
         },
         {
           id: "tradeTime",
-          name: "columns.trade-time",
+          name: "financial-table.columns.trade-time",
           type: "text"
         }
       ];
