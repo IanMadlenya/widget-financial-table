@@ -97,7 +97,7 @@
       "src/components/angular/angular.js",
       "src/components/angular-route/angular-route.js",
       "src/components/angular-mocks/angular-mocks.js",
-      "test/mocks.js",
+      "node_modules/widget-tester/mocks/common-mock.js",
       "src/components/angular-bootstrap/ui-bootstrap-tpls.js",
       "src/config/test.js",
       "src/components/bootstrap-form-components/dist/js/**/*.js",
