@@ -95,6 +95,7 @@
       "src/components/jquery/dist/jquery.min.js",
       "src/components/q/q.js",
       "src/components/angular/angular.js",
+      "src/components/angular-sanitize/angular-sanitize.js",
       "src/components/angular-route/angular-route.js",
       "src/components/angular-mocks/angular-mocks.js",
       "node_modules/widget-tester/mocks/common-mock.js",
