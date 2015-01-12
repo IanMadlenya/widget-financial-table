@@ -34,9 +34,12 @@
 							<span class="sr-only">Close</span>
 		        </button>
 		      </h1>
-					<div id="subscription-status" subscription-status
-					product-id="{{PRODUCT_ID}}" product-code="{{PRODUCT_CODE}}" company-id="{{settings.params.companyId}}"
-					ng-model="subscribed"></div>
+					<div class="store-status-2">
+						<div id="subscription-status" subscription-status
+							product-id="{{PRODUCT_ID}}" product-code="{{PRODUCT_CODE}}" company-id="{{settings.params.companyId}}"
+							ng-model="subscribed">
+						</div>
+					</div>
 					<div class="sticky-wrapper">
             <widget-button-toolbar
               save="saveSettings()" cancel="closeSettings()" disable-save="settingsForm.$invalid"
@@ -115,6 +118,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
     
 	<!-- build:js js/settings.min.js -->
+	<script src="components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="components/angular-translate/angular-translate.js"></script>
 	<script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 	<script src="components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
