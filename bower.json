@@ -5,17 +5,18 @@
     "angular": "1.2.18",
     "angular-route": "1.2.18",
     "underscore": "1.6.0",
-    "widget-common": "https://github.com/Rise-Vision/widget-common.git",
-    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git",
-    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git",
+    "widget-common": "https://github.com/Rise-Vision/widget-common.git#0.1.1",
+    "widget-settings-ui-core": "https://github.com/Rise-Vision/widget-settings-ui-core.git#0.1.8",
+    "widget-settings-ui-components": "https://github.com/Rise-Vision/widget-settings-ui-components.git#0.1.0",
     "component-financial-selector": "https://github.com/Rise-Vision/component-financial-selector.git",
     "component-subscription-status": "https://github.com/Rise-Vision/component-subscription-status.git#master",
     "rv-data-tables": "https://github.com/Rise-Vision/DataTables.git",
     "auto-scroll": "https://github.com/Rise-Vision/auto-scroll.git"
   },
   "resolutions": {
+    "angular-translate": "~2.5.2",
+    "angular-translate-loader-static-files": "~2.5.2",
     "jquery": "1.11.0",
-    "angular-translate": "~2.4.2",
-    "angular-translate-loader-static-files": "~2.4.2"
+    "underscore": "~1.7.0"
   }
 }
