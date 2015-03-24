@@ -1,46 +1,48 @@
 /* jshint node: true */
 
 (function () {
-  'use strict';
+  "use strict";
 
-  var gulp = require('gulp');
-  var spawn = require('child_process').spawn;
-  var es = require("event-stream");
-  var gutil = require('gulp-util');
-  var concat = require("gulp-concat");
-  var bump = require('gulp-bump');
+  var bump = require("gulp-bump");
+  var del = require("del");
+  var factory = require("widget-tester").gulpTaskFactory;
+  var gulp = require("gulp");
+  var gutil = require("gulp-util");
   var jshint = require("gulp-jshint");
   var minifyCSS = require("gulp-minify-css");
-  var rimraf = require("gulp-rimraf");
-  var sourcemaps = require("gulp-sourcemaps");
-  var usemin = require("gulp-usemin");
-  var uglify = require("gulp-uglify");
-  var runSequence = require('run-sequence');
-  var path = require('path');
+  var path = require("path");
   var rename = require("gulp-rename");
-  var factory = require("widget-tester").gulpTaskFactory;
+  var runSequence = require("run-sequence");
+  var sourcemaps = require("gulp-sourcemaps");
+  var uglify = require("gulp-uglify");
+  var usemin = require("gulp-usemin");
 
   var appJSFiles = [
-    "src/**/*.js",
-    "!./src/components/**/*"
-  ];
+      "src/**/*.js",
+      "!./src/components/**/*"
+    ],
+    htmlFiles = [
+      "./src/settings.html",
+      "./src/widget.html"
+    ];
 
-  var cssFiles = [
-    "src/css/**/*.css"
-  ];
-
-  gulp.task("clean", function() {
-    return gulp.src("dist")
-      .pipe(rimraf({force: true}));
+  gulp.task("clean", function(cb) {
+    del(["./dist/**"], cb);
   });
 
-  gulp.task('config', function() {
-    var env = process.env.NODE_ENV || 'dev';
-    gutil.log('Environment is', env);
+  gulp.task("config", function() {
+    var env = process.env.NODE_ENV || "dev";
+    gutil.log("Environment is", env);
 
-    return gulp.src(['./src/config/' + env + '.js'])
-      .pipe(rename('config.js'))
-      .pipe(gulp.dest('./src/config'));
+    return gulp.src(["./src/config/" + env + ".js"])
+      .pipe(rename("config.js"))
+      .pipe(gulp.dest("./src/config"));
+  });
+
+  gulp.task("bump", function(){
+    return gulp.src(["./package.json", "./bower.json"])
+      .pipe(bump({type:"patch"}))
+      .pipe(gulp.dest("./"));
   });
 
   gulp.task("lint", function() {
@@ -50,13 +52,25 @@
       // .pipe(jshint.reporter("fail"));
   });
 
-  gulp.task("html", ["lint"], function () {
-    return gulp.src(['./src/settings.html', './src/widget.html'])
-    .pipe(usemin({
-      css: [sourcemaps.init(), minifyCSS(), sourcemaps.write()],
-      js: [sourcemaps.init(), uglify(), sourcemaps.write()]
-    }))
-    .pipe(gulp.dest("dist/"));
+  gulp.task("source", ["lint"], function () {
+    return gulp.src(htmlFiles)
+      .pipe(usemin({
+        css: [sourcemaps.init(), minifyCSS(), sourcemaps.write()],
+        js: [sourcemaps.init(), uglify(), sourcemaps.write()]
+      }))
+      .pipe(gulp.dest("dist/"));
+  });
+
+  gulp.task("unminify", function () {
+    return gulp.src(htmlFiles)
+      .pipe(usemin({
+        css: [rename(function (path) {
+          path.basename = path.basename.substring(0, path.basename.indexOf(".min"))
+        }), gulp.dest("dist")],
+        js: [rename(function (path) {
+          path.basename = path.basename.substring(0, path.basename.indexOf(".min"))
+        }), gulp.dest("dist")]
+      }))
   });
 
   gulp.task("fonts", function() {
@@ -68,7 +82,7 @@
     return gulp.src(["src/components/select2/*.png", "src/components/select2/*.gif"])
       .pipe(gulp.dest("dist/css"));
   });
-  
+
   gulp.task("layouts", function() {
     return gulp.src(["src/layouts/*.xml"])
       .pipe(gulp.dest("dist/layouts"));
@@ -79,8 +93,8 @@
       .pipe(gulp.dest("dist/locales"));
   });
 
-  gulp.task('build', function (cb) {
-      runSequence(["clean", "config"], ["html", "fonts", "images", "layouts", "i18n"], cb);
+  gulp.task("build", function (cb) {
+      runSequence(["clean", "config"], ["source", "fonts", "images", "layouts", "i18n"], ["unminify"], cb)
   });
 
   gulp.task("e2e:server", ["config", "html:e2e"], factory.testServer());
@@ -110,7 +124,7 @@
       "src/settings/**/*.js",
       "test/unit/settings/**/*spec.js"]}
   ));
-  
+
   gulp.task("test:unit:widget", factory.testUnitAngular(
     {testFiles: [
       "src/components/jquery/dist/jquery.min.js",
@@ -129,7 +143,7 @@
   gulp.task("test:e2e:settings", ["webdriver_update"], factory.testE2EAngular({
     testFiles: "test/e2e/financial-table-settings-scenarios.js"}
   ));
-  
+
   gulp.task("test:unit", function(cb) {
     runSequence("test:unit:widget", "test:unit:settings", cb);
   });
@@ -137,14 +151,12 @@
   gulp.task("test:e2e", function(cb) {
     runSequence(["html:e2e", "e2e:server"], "test:e2e:widget", "test:e2e:settings", "e2e:server-close", cb);
   });
-  gulp.task("test:metrics", factory.metrics());
 
   gulp.task("test", function(cb) {
-    runSequence("test:unit", "test:e2e", "test:metrics", cb);
+    runSequence("test:unit", "test:e2e", cb);
   });
 
   gulp.task("default", function(cb) {
     runSequence("test", "build", cb);
   });
-
 })();
